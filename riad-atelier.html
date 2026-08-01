@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riad Atelier - Tadelakt &amp; Cucina Marocchina</title>
+<meta name="description" content="Riad Atelier: artigiani del tadelakt e corsi di cucina marocchina in Italia. Calce di Marrakech, ospitalità e sapori autentici.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241a14;
+    --ink-soft:#5a4a3c;
+    --paper:#f2e9d8;
+    --paper-2:#e7dac0;
+    --paper-3:#dccba5;
+    --clay:#a8532c;
+    --clay-deep:#7e3c1f;
+    --zellige:#1c5069;
+    --zellige-deep:#123a4e;
+    --saffron:#c98a2c;
+    --line: rgba(36,26,20,0.14);
+    --radius: 2px;
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Karla', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--clay);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--clay);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:14px 26px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    text-decoration:none;
+    background:transparent;
+    cursor:pointer;
+    transition: background .25s ease, color .25s ease, border-color .25s ease;
+    border-radius:var(--radius);
+  }
+  .btn:hover{ background:var(--ink); color:var(--paper); }
+  .btn-solid{ background:var(--clay); border-color:var(--clay); color:var(--paper); }
+  .btn-solid:hover{ background:var(--clay-deep); border-color:var(--clay-deep); color:var(--paper); }
+  .btn-ghost{ border-color:rgba(242,233,216,0.55); color:var(--paper); }
+  .btn-ghost:hover{ background:var(--paper); color:var(--ink); }
+
+  /* ===== Arch motif (signature element) ===== */
+  .arch-frame{
+    --arch-r: 46%;
+    clip-path: path('M0,320 L0,90 C0,40 45,0 100,0 C155,0 200,40 200,90 L200,320 Z');
+    width:100%;
+    filter: drop-shadow(0 22px 40px rgba(36,26,20,0.3));
+  }
+  svg.arch-svg{ display:block; }
+
+  /* ===== Header / nav ===== */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(242,233,216,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:20px;
+    color:var(--ink);
+    letter-spacing:0.01em;
+  }
+  .brand-mark{ width:34px; height:34px; flex:none; }
+
+  /* ===== Emblem band (logo + motto, first thing on the page) ===== */
+  .emblem-band{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    padding:56px 0 48px;
+    border-bottom:1px solid rgba(242,233,216,0.14);
+  }
+  .emblem-badge{
+    width:132px;
+    height:auto;
+    margin:0 auto 26px;
+    display:block;
+  }
+  .emblem-band .motto{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(17px, 2.3vw, 24px);
+    max-width:44ch;
+    margin:0 auto;
+    line-height:1.5;
+    color:var(--paper);
+  }
+  .emblem-band .motto-rule{
+    width:44px; height:1px;
+    background:var(--saffron);
+    margin:24px auto 0;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:30px;
+    list-style:none; margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-size:14.5px;
+    color:var(--ink-soft);
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a:hover{ color:var(--clay); }
+  .lang-switch{
+    display:flex; gap:2px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+  }
+  .lang-switch button{
+    background:none; border:1px solid transparent;
+    color:var(--ink-soft);
+    padding:5px 8px;
+    cursor:pointer;
+    text-transform:uppercase;
+  }
+  .lang-switch button.active{
+    color:var(--ink);
+    border-color:var(--ink);
+  }
+  .nav-toggle{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    flex-direction:column; gap:5px; padding:6px;
+  }
+  .nav-toggle span{ width:22px; height:2px; background:var(--ink); display:block; }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding:96px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(48px, 8vw, 92px);
+    line-height:0.94;
+    margin:14px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--clay);
+  }
+  .hero p.lead{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-visual{
+    position:relative;
+    aspect-ratio: 3/4;
+    filter: drop-shadow(0 30px 50px rgba(36,26,20,0.35));
+  }
+  .placeholder{
+    width:100%; height:100%;
+    background:
+      repeating-linear-gradient(135deg, rgba(36,26,20,0.05) 0 2px, transparent 2px 14px),
+      linear-gradient(160deg, var(--paper-3), var(--paper-2));
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:8px;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:20px;
+  }
+  .placeholder .ph-icon{ opacity:0.5; }
+  .placeholder small{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    opacity:0.65;
+  }
+  .hero-pattern{
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23241a14' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M42 0 L84 42 L42 84 L0 42 Z'/%3E%3Ccircle cx='42' cy='42' r='18'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events:none;
+  }
+  .hero-divider{
+    height:64px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='64' viewBox='0 0 120 64'%3E%3Cpath d='M0 64 L0 30 C0 13 27 0 60 0 C93 0 120 13 120 30 L120 64 Z' fill='none' stroke='%23241a14' stroke-opacity='0.16'/%3E%3C/svg%3E");
+    background-repeat:repeat-x;
+    background-size:120px 64px;
+    margin-top:60px;
+  }
+
+  section{ padding:100px 0; }
+  .section-alt{ background:var(--paper-2); }
+  .section-dark{ background:var(--ink); color:var(--paper); }
+  .section-dark h2, .section-dark h3{ color:var(--paper); }
+  .section-dark .eyebrow{ color:var(--saffron); }
+  .section-dark .eyebrow::before{ background:var(--saffron); }
+  .section-dark p{ color:rgba(242,233,216,0.82); }
+
+  .two-col{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .two-col.reverse{ grid-template-columns: 1fr 1fr; }
+  .two-col.reverse .visual-col{ order:2; }
+
+  h2.h-lg{ font-size:clamp(32px, 4.2vw, 46px); margin-bottom:22px; max-width:16ch; }
+  p.body-lg{ font-size:17.5px; color:var(--ink-soft); max-width:56ch; margin-bottom:0;}
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:56px;
+  }
+  .card{
+    background:var(--paper);
+    padding:34px 26px;
+  }
+  .card .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--clay);
+    display:block;
+    margin-bottom:18px;
+  }
+  .card h4{ font-size:19px; margin-bottom:10px; line-height:1.25; }
+  .card p{ color:var(--ink-soft); font-size:14.5px; margin:0; }
+
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:26px;
+    margin-top:56px;
+  }
+  .gallery-item .arch-frame{
+    aspect-ratio: 200/320;
+  }
+  .gallery-item figcaption{
+    margin-top:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+  }
+
+  /* ===== Catalog (client experience: photos & videos) ===== */
+  .catalog-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+    margin-top:48px;
+  }
+  .catalog-item{
+    position:relative;
+    aspect-ratio: 4/5;
+    overflow:hidden;
+    border-radius:var(--radius);
+  }
+  .catalog-item .placeholder{ height:100%; }
+  .catalog-item figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:10px 12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.03em;
+    color:var(--paper);
+    background:linear-gradient(0deg, rgba(36,26,20,0.75), rgba(36,26,20,0));
+  }
+  .catalog-item .play-icon{
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:44px; height:44px;
+    border-radius:50%;
+    background:rgba(36,26,20,0.55);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .catalog-item .play-icon svg{ width:14px; height:14px; }
+  .catalog-item .media-tag{
+    position:absolute; top:10px; left:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    background:rgba(36,26,20,0.55);
+    color:var(--paper);
+    border-radius:20px;
+  }
+  .section-dark .catalog-item .media-tag{ background:rgba(242,233,216,0.18); }
+  .catalog-cta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-top:32px;
+  }
+  .catalog-note{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .section-dark .catalog-note{ color:rgba(242,233,216,0.7); }
+  .ig-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    color:inherit;
+    border-bottom:1px solid currentColor;
+    padding-bottom:2px;
+  }
+  @media (max-width:900px){
+    .catalog-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  .artisan-row{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:28px;
+    margin-top:56px;
+  }
+  .artisan-card{ text-align:left; }
+  .artisan-card .arch-frame{ aspect-ratio:200/240; margin-bottom:18px; }
+  .artisan-card h4{ font-size:18px; margin-bottom:4px; }
+  .artisan-card .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--clay);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:10px;
+    display:block;
+  }
+  .artisan-card p{ color:var(--ink-soft); font-size:14.5px; }
+
+  .class-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:24px;
+    margin-top:56px;
+  }
+  .class-card{
+    border:1px solid rgba(242,233,216,0.25);
+    padding:30px;
+    position:relative;
+  }
+  .class-card .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--saffron);
+    display:block;
+    margin-bottom:14px;
+  }
+  .class-card h4{ font-size:22px; margin-bottom:10px; }
+  .class-card p{ font-size:14.5px; margin-bottom:20px; }
+  .class-card a{ font-size:13px; text-decoration:underline; text-underline-offset:4px; color:var(--paper); }
+
+  .shop-band{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+    margin-top:56px;
+  }
+  .shop-item .placeholder{ aspect-ratio:1/1; }
+  .shop-item img{ box-shadow: 0 16px 32px rgba(36,26,20,0.25); }
+  .shop-item h4{ font-size:15.5px; margin:14px 0 4px; }
+  .shop-item .price{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--clay);
+  }
+
+  .quote-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    margin-top:20px;
+  }
+  blockquote{
+    margin:0;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  blockquote p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    color:var(--ink);
+    margin:0 0 16px;
+    line-height:1.4;
+  }
+  blockquote cite{
+    font-family:'IBM Plex Mono', monospace;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+  }
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:70px;
+  }
+  .field{ margin-bottom:20px; }
+  .field label{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .field input, .field textarea, .field select{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--ink);
+    padding:10px 2px;
+    font-family:'Karla', sans-serif;
+    font-size:16px;
+    color:var(--ink);
+    resize:vertical;
+    border-radius:0;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  .field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1 L6 7 L11 1' fill='none' stroke='%23241a14' stroke-width='1.4'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 4px center;
+    padding-right:20px;
+  }
+  .field select:invalid{ color:var(--ink-soft); }
+  .field input:focus, .field textarea:focus, .field select:focus{
+    outline:none;
+    border-bottom:2px solid var(--clay);
+  }
+  .info-block{ margin-bottom:30px; }
+  .info-block .eyebrow{ margin-bottom:8px; }
+  .info-block p, .info-block a{
+    font-size:16px;
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .info-block a:hover{ color:var(--clay); }
+
+  footer{
+    background:var(--ink);
+    color:var(--paper);
+    padding:60px 0 30px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(242,233,216,0.15);
+  }
+  footer .brand{ color:var(--paper); }
+  footer p.blurb{ max-width:38ch; color:rgba(242,233,216,0.65); font-size:14.5px; margin-top:14px; }
+  .footer-cols{ display:flex; gap:60px; flex-wrap:wrap; }
+  .footer-col h5{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--saffron);
+    margin-bottom:14px;
+  }
+  .footer-col a{
+    display:block;
+    color:rgba(242,233,216,0.75);
+    text-decoration:none;
+    font-size:14.5px;
+    margin-bottom:10px;
+  }
+  .footer-col a:hover{ color:var(--paper); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:rgba(242,233,216,0.5);
+    flex-wrap:wrap; gap:12px;
+  }
+
+  [data-reveal]{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  [data-reveal].is-visible{ opacity:1; transform:translateY(0); }
+
+  @media (max-width: 980px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:flex; }
+    .hero-grid, .two-col, .two-col.reverse{ grid-template-columns:1fr; }
+    .two-col.reverse .visual-col{ order:0; }
+    .card-grid{ grid-template-columns:repeat(2,1fr); }
+    .artisan-row{ grid-template-columns:repeat(2,1fr); gap:24px; }
+    .gallery{ grid-template-columns:repeat(2,1fr); }
+    .class-grid{ grid-template-columns:1fr; }
+    .shop-band{ grid-template-columns:repeat(2,1fr); }
+    .quote-row{ grid-template-columns:1fr; gap:26px; }
+    .contact-grid{ grid-template-columns:1fr; gap:40px; }
+    .footer-top{ flex-direction:column; }
+  }
+  @media (max-width:560px){
+    .card-grid{ grid-template-columns:1fr; }
+    .artisan-row{ grid-template-columns:1fr; }
+    .gallery{ grid-template-columns:1fr; }
+    .shop-band{ grid-template-columns:1fr; }
+    section{ padding:70px 0; }
+    .hero{ padding-top:70px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 34 34" fill="none">
+        <line x1="17" y1="4" x2="17" y2="30" stroke="#a8532c" stroke-width="1"/>
+        <text x="8" y="25.5" font-family="Fraunces, serif" font-weight="600" font-size="18" fill="#241a14">R</text>
+        <text x="17.5" y="18.5" font-family="Fraunces, serif" font-weight="600" font-size="18" fill="#241a14">A</text>
+      </svg>
+      Riad Atelier
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tadelakt" data-i18n="nav.tadelakt">Tadelakt</a></li>
+      <li><a href="#artigiani" data-i18n="nav.artisans">Artigiani</a></li>
+      <li><a href="#cucina" data-i18n="nav.cooking">Corsi di Cucina</a></li>
+      <li><a href="#bottega" data-i18n="nav.shop">Bottega</a></li>
+      <li><a href="#storia" data-i18n="nav.about">Chi Siamo</a></li>
+      <li><a href="#contatti" data-i18n="nav.contact">Contatti</a></li>
+    </ul>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang="it" class="active">IT</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="fr">FR</button>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- EMBLEM -->
+<section class="emblem-band" aria-label="Riad Atelier emblem">
+  <div class="wrap">
+    <svg class="emblem-badge" viewBox="0 0 220 258" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="110" y1="12" x2="110" y2="192" stroke="#c98a2c" stroke-width="1"/>
+
+      <!-- top-left rose cluster -->
+      <g stroke="#c98a2c" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M93 38 C81 26 62 29 55 43 C48 57 61 69 75 65 C87 62 91 48 93 38 Z"/>
+        <path d="M78 51 C68 43 54 47 50 59 C46 71 58 79 68 73 C76 68 78 59 78 51 Z"/>
+        <path d="M63 47 C52 43 41 49 40 61 C39 73 51 77 59 69 C65 63 65 53 63 47 Z"/>
+        <circle cx="66" cy="53" r="5"/>
+        <path d="M58 78 C46 84 40 96 46 106"/>
+        <path d="M48 91 C38 87 28 91 25 101 C31 109 43 107 48 91 Z"/>
+        <path d="M54 99 C49 111 54 125 65 131"/>
+      </g>
+
+      <!-- bottom-right rose cluster -->
+      <g stroke="#c98a2c" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M149 160 C159 150 175 152 181 164 C187 176 177 186 165 183 C155 181 151 170 149 160 Z"/>
+        <path d="M162 172 C171 166 183 170 186 180 C189 190 179 196 171 190 C165 185 163 178 162 172 Z"/>
+        <circle cx="167" cy="172" r="4.5"/>
+        <path d="M157 184 C167 190 175 200 172 210"/>
+        <path d="M175 196 C185 194 193 200 194 210 C187 216 177 210 175 196 Z"/>
+      </g>
+
+      <!-- Letters -->
+      <text x="58" y="150" font-family="Fraunces, serif" font-weight="600" font-size="116" fill="#c98a2c" text-anchor="middle">R</text>
+      <text x="163" y="118" font-family="Fraunces, serif" font-weight="600" font-size="116" fill="#c98a2c" text-anchor="middle">A</text>
+
+      <!-- Wordmark -->
+      <text x="110" y="222" font-family="Fraunces, serif" font-weight="600" font-size="21" letter-spacing="6" fill="#f2e9d8" text-anchor="middle">RIAD ATELIER</text>
+      <text x="110" y="242" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.8" fill="#c98a2c" text-anchor="middle">TADELAKT &amp; CUCINA MAROCCHINA</text>
+    </svg>
+    <p class="motto" data-i18n="motto.text">Apprendre, Réaliser et Vivre l'Authenticité Marocaine au Cœur de la Civilisation Romaine.</p>
+    <div class="motto-rule"></div>
+  </div>
+</section>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow" data-i18n="hero.eyebrow">Artigianato &amp; Convivialità Marocchina</div>
+        <h1>Riad <em>Atelier</em></h1>
+        <p class="lead" data-i18n="hero.lead">Dalle mani dei maestri di Marrakech alle case e alle tavole d'Italia: calce, spezie, ospitalità.</p>
+        <div class="hero-ctas">
+          <a href="#tadelakt" class="btn btn-solid" data-i18n="hero.cta1">Scopri il Tadelakt</a>
+          <a href="#cucina" class="btn" data-i18n="hero.cta2">Prenota un Corso</a>
+        </div>
+      </div>
+      <div class="hero-visual" data-reveal>
+        <div class="arch-frame">
+          <img src="https://export-download.canva.com/-rxsI/DAHQZO-rxsI/-1/0/0001-8331044016119574182.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T184238Z&X-Amz-Expires=70201&X-Amz-Signature=f35f9cc959ef8593717509757b5e5f13ef50b2a056cdf6c96f5ad4f3474a55c0&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A12%3A39%20GMT" alt="Bagno in tadelakt" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+    <div class="hero-divider"></div>
+  </section>
+
+  <!-- STORIA -->
+  <section id="storia">
+    <div class="wrap two-col">
+      <div data-reveal>
+        <div class="eyebrow" data-i18n="story.eyebrow">La Nostra Storia</div>
+        <h2 class="h-lg" data-i18n="story.title">Due Arti, Una Sola Radice</h2>
+      </div>
+      <div data-reveal>
+        <p class="body-lg" data-i18n="story.body">Nel riad marocchino, l'arte di rivestire un muro e l'arte di preparare un tajine nascono dallo stesso gesto: accogliere. Riad Atelier porta in Italia questa doppia eredità - la calce lucida del tadelakt e i sapori delle cucine di Marrakech - attraverso artigiani e maestri di cucina formati secondo la tradizione.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TADELAKT -->
+  <section id="tadelakt" class="section-alt">
+    <div class="wrap two-col">
+      <div class="visual-col" data-reveal>
+        <div class="arch-frame">
+          <img src="https://export-download.canva.com/Cdlpc/DAHQZKCdlpc/-1/0/0001-8999828560439925139.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T094950Z&X-Amz-Expires=13946&X-Amz-Signature=f7fb65cbf6d94031d835fa80fecf7a0fab624ee300e93d22d62561b5c2dfa095&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A42%3A16%20GMT" alt="Tadelakt wall texture" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+      <div data-reveal>
+        <div class="eyebrow" data-i18n="tad.eyebrow">Il Tadelakt</div>
+        <h2 class="h-lg" data-i18n="tad.title">La Calce che Respira</h2>
+        <p class="body-lg" data-i18n="tad.body">Tecnica millenaria nata negli hammam di Marrakech, il tadelakt trasforma bagni, docce, cucine e pareti in superfici lucide, calde e naturalmente impermeabili. I nostri artigiani, formati secondo il metodo tradizionale, lavorano in tutta Italia per hotel, architetti e privati.</p>
+        <div style="margin-top:30px;">
+          <a href="#contatti" class="btn js-book" data-subject="tadelakt" data-i18n="tad.cta">Richiedi un Preventivo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="card-grid">
+        <div class="card"><span class="num">01</span><h4 data-i18n="tad.s1.t">Bagni &amp; Hammam Privati</h4><p data-i18n="tad.s1.d">Superfici lucide, resistenti all'umidità, su misura per il tuo bagno.</p></div>
+        <div class="card"><span class="num">02</span><h4 data-i18n="tad.s2.t">Cucine &amp; Superfici ad Acqua</h4><p data-i18n="tad.s2.d">Piani e rivestimenti a contatto con acqua, naturali e senza fughe.</p></div>
+        <div class="card"><span class="num">03</span><h4 data-i18n="tad.s3.t">Pareti &amp; Nicchie Decorative</h4><p data-i18n="tad.s3.d">Superfici materiche per interni residenziali e contract.</p></div>
+        <div class="card"><span class="num">04</span><h4 data-i18n="tad.s4.t">Restauro &amp; Manutenzione</h4><p data-i18n="tad.s4.d">Ripristino di superfici esistenti secondo la tecnica originale.</p></div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="gallery">
+        <figure class="gallery-item"><div class="arch-frame"><img src="https://export-download.canva.com/I05pM/DAHQZLI05pM/-1/0/0001-8999828559198633965.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T080542Z&X-Amz-Expires=23374&X-Amz-Signature=76861e84e8df140c74147015eaf06c709a748fc0cfd718eb2e91b7bb5111f050&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A35%3A16%20GMT" alt="Bagno turchese" style="width:100%; height:100%; object-fit:cover;"></div><figcaption data-i18n="gallery.c1">Bagno turchese - Milano</figcaption></figure>
+        <figure class="gallery-item"><div class="arch-frame"><img src="https://export-download.canva.com/DCSWo/DAHQZJDCSWo/-1/0/0001-4721408915841538785.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T040536Z&X-Amz-Expires=34636&X-Amz-Signature=e1e9d5c1b08a5d3632060af1a820fdf78f58294305d430d9da9de699e4c526c4&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A42%3A52%20GMT" alt="Hammam privato" style="width:100%; height:100%; object-fit:cover;"></div><figcaption data-i18n="gallery.c2">Hammam privato - Torino</figcaption></figure>
+        <figure class="gallery-item"><div class="arch-frame"><img src="https://export-download.canva.com/pgitQ/DAHQZOpgitQ/-1/0/0001-404708672019511615.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T180944Z&X-Amz-Expires=73257&X-Amz-Signature=a915166391f25e90c3dcc825f1390b831cc250513e147cfa20586346577f21f1&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A30%3A41%20GMT" alt="Parete decorativa" style="width:100%; height:100%; object-fit:cover;"></div><figcaption data-i18n="gallery.c3">Parete decorativa - Como</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- TADELAKT CATALOG -->
+  <section id="tadelakt-catalog">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="cat.tad.eyebrow">Catalogo Esperienze</div>
+      <h2 class="h-lg" data-i18n="cat.tad.title">Foto e Video dei Nostri Cantieri</h2>
+      <p class="body-lg" data-i18n="cat.tad.body">Uno sguardo reale sul lavoro dei nostri artigiani: superfici in lavorazione, risultati finiti e il feedback di chi ha scelto Riad Atelier.</p>
+
+      <div class="catalog-grid">
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.1">Applicazione del tadelakt, ripresa dal vivo</small></div>
+          <span class="media-tag" data-i18n="media.video">Video</span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
+          <figcaption data-i18n="cat.tad.1c">Lavorazione in corso - Milano</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.2">Bagno completato, superficie lucida</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.tad.2c">Bagno privato - Torino</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.3">Dettaglio texture e finitura a mano</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.tad.3c">Dettaglio finitura</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.4">Testimonianza di un cliente privato</small></div>
+          <span class="media-tag" data-i18n="media.video">Video</span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
+          <figcaption data-i18n="cat.tad.4c">Testimonianza cliente</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.5">Prima e dopo di una parete decorativa</small></div>
+          <span class="media-tag" data-i18n="media.video">Video</span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
+          <figcaption data-i18n="cat.tad.5c">Prima / Dopo - Como</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.6">Hammam privato, vista d'insieme</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.tad.6c">Hammam privato</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.7">Mani dell'artigiano al lavoro</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.tad.7c">Il gesto dell'artigiano</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.8">Consegna cantiere, sopralluogo finale</small></div>
+          <span class="media-tag" data-i18n="media.video">Video</span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
+          <figcaption data-i18n="cat.tad.8c">Consegna del cantiere</figcaption>
+        </figure>
+      </div>
+
+      <div class="catalog-cta">
+        <p class="catalog-note" data-i18n="cat.tad.note">Altre foto e video dei cantieri sono pubblicati regolarmente sul nostro Instagram.</p>
+        <a class="ig-link" href="https://www.instagram.com/abdelfettah_soukdal/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="17" height="17"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          <span data-i18n="cat.igLabel">Segui su Instagram</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIGIANI -->
+  <section id="artigiani">
+    <div class="wrap">
+      <div class="two-col">
+        <div data-reveal>
+          <div class="eyebrow" data-i18n="art.eyebrow">Gli Artigiani</div>
+          <h2 class="h-lg" data-i18n="art.title">I Nostri Maestri</h2>
+        </div>
+        <div data-reveal>
+          <p class="body-lg" data-i18n="art.body">Selezioniamo artigiani marocchini con anni di esperienza diretta a Marrakech, li accompagniamo in Italia e ne curiamo la formazione continua, per garantire un tadelakt fedele alla tradizione, cantiere dopo cantiere.</p>
+        </div>
+      </div>
+
+      <div class="artisan-row">
+        <div class="artisan-card" data-reveal>
+          <div class="arch-frame"><div class="placeholder"><small data-i18n="ph.a1">Ritratto coach</small></div></div>
+          <span class="role" data-i18n="art.role1">Coach Tadelakt &amp; Cucina</span>
+          <h4>Abdelfettah Soukdal</h4>
+          <p data-i18n="art.desc1">Forma i nostri artigiani e maestri di cucina, unendo le due tradizioni.</p>
+        </div>
+        <div class="artisan-card" data-reveal>
+          <div class="arch-frame"><div class="placeholder"><small data-i18n="ph.a2">Ritratto manager</small></div></div>
+          <span class="role" data-i18n="art.role2">Manager Tadelakt - 13 anni d'esperienza</span>
+          <h4>Adil Dermous</h4>
+          <p data-i18n="art.desc2">Coordina i cantieri e i team di artigiani tadelakt in tutta Italia.</p>
+        </div>
+        <div class="artisan-card" data-reveal>
+          <div class="arch-frame"><div class="placeholder"><small data-i18n="ph.a3">Ritratto artigiano</small></div></div>
+          <span class="role" data-i18n="art.role3">Artigiano Tadelakt - 8 anni d'esperienza</span>
+          <h4>Abdelkarim Qaceme</h4>
+          <p data-i18n="art.desc3">Specialista nella lavorazione della calce su superfici curve e bagni.</p>
+        </div>
+        <div class="artisan-card" data-reveal>
+          <div class="arch-frame"><div class="placeholder"><small data-i18n="ph.a4">Ritratto artigiano</small></div></div>
+          <span class="role" data-i18n="art.role4">Artigiano Tadelakt - 9 anni d'esperienza</span>
+          <h4>Aziz Ennacir</h4>
+          <p data-i18n="art.desc4">Formato a Marrakech, applica il tadelakt su cantieri residenziali e contract.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUCINA -->
+  <section id="cucina" class="section-dark">
+    <div class="wrap two-col reverse">
+      <div class="visual-col" data-reveal>
+        <div class="arch-frame">
+          <img src="https://export-download.canva.com/zaVwI/DAHQZAzaVwI/-1/0/0001-6224485288737621349.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T020259Z&X-Amz-Expires=44143&X-Amz-Signature=8085f573657254025e365f529d2f3056136438b64d30aef396e677decb639051&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A18%3A42%20GMT" alt="Tavola marocchina" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+      <div data-reveal>
+        <div class="eyebrow" data-i18n="cook.eyebrow">Corsi di Cucina</div>
+        <h2 class="h-lg" data-i18n="cook.title">A Tavola con Marrakech</h2>
+        <p class="body-lg" data-i18n="cook.body">Piccoli gruppi, ingredienti autentici, gesti tramandati: impara a preparare tajine, couscous, pastilla e il rituale del tè alla menta, guidato da chi la cucina marocchina la vive ogni giorno.</p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="class-grid">
+        <div class="class-card" data-reveal>
+          <span class="tag" data-i18n="cook.c1.tag">Corso Base</span>
+          <h4 data-i18n="cook.c1.t">Tajine &amp; Couscous</h4>
+          <p data-i18n="cook.c1.d">Le basi della cucina marocchina quotidiana, dalla spezia al piatto finito.</p>
+          <a href="#contatti" class="js-book" data-subject="cook1" data-i18n="cook.book">Prenota →</a>
+        </div>
+        <div class="class-card" data-reveal>
+          <span class="tag" data-i18n="cook.c2.tag">Pasticceria</span>
+          <h4 data-i18n="cook.c2.t">Pastilla &amp; Dolci</h4>
+          <p data-i18n="cook.c2.d">Sfoglie sottili, mandorle e miele: i segreti della pasticceria marocchina.</p>
+          <a href="#contatti" class="js-book" data-subject="cook2" data-i18n="cook.book">Prenota →</a>
+        </div>
+        <div class="class-card" data-reveal>
+          <span class="tag" data-i18n="cook.c3.tag">Rituale</span>
+          <h4 data-i18n="cook.c3.t">Tè alla Menta</h4>
+          <p data-i18n="cook.c3.d">L'arte di versare il tè, tra gesto, ospitalità e convivialità.</p>
+          <a href="#contatti" class="js-book" data-subject="cook3" data-i18n="cook.book">Prenota →</a>
+        </div>
+        <div class="class-card" data-reveal>
+          <span class="tag" data-i18n="cook.c4.tag">Su Misura</span>
+          <h4 data-i18n="cook.c4.t">Corso Privato</h4>
+          <p data-i18n="cook.c4.d">Per gruppi, aziende o eventi: un'esperienza marocchina su richiesta.</p>
+          <a href="#contatti" class="js-book" data-subject="cook4" data-i18n="cook.book">Prenota →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUCINA CATALOG -->
+  <section id="cucina-catalog">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="cat.cook.eyebrow">Catalogo Esperienze</div>
+      <h2 class="h-lg" data-i18n="cat.cook.title">Foto e Video dei Nostri Corsi</h2>
+      <p class="body-lg" data-i18n="cat.cook.body">I momenti vissuti a tavola e ai fornelli: preparazioni, gesti tramandati e le impressioni di chi ha partecipato ai nostri corsi.</p>
+
+      <div class="catalog-grid">
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.1">Preparazione del tajine in classe</small></div>
+          <span class="media-tag" data-i18n="media.video">Video</span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
+          <figcaption data-i18n="cat.cook.1c">Corso Tajine &amp; Couscous</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.2">Tavola marocchina apparecchiata</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.cook.2c">Tavola finale</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.3">Lavorazione della pastilla a mano</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.cook.3c">Corso Pastilla &amp; Dolci</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.4">Il rituale del tè versato da alto</small></div>
+          <span class="media-tag" data-i18n="media.video">Video</span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
+          <figcaption data-i18n="cat.cook.4c">Rituale del tè alla menta</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.5">Gruppo di allievi durante il corso</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.cook.5c">Piccolo gruppo</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.6">Testimonianza di un allievo</small></div>
+          <span class="media-tag" data-i18n="media.video">Video</span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
+          <figcaption data-i18n="cat.cook.6c">Testimonianza allievo</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.7">Corso privato per un evento aziendale</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.cook.7c">Corso privato / evento</figcaption>
+        </figure>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.cook.8">Spezie e ingredienti selezionati</small></div>
+          <span class="media-tag" data-i18n="media.photo">Foto</span>
+          <figcaption data-i18n="cat.cook.8c">Ingredienti &amp; spezie</figcaption>
+        </figure>
+      </div>
+
+      <div class="catalog-cta">
+        <p class="catalog-note" data-i18n="cat.cook.note">Altre foto e video dei corsi sono pubblicati regolarmente sul nostro Instagram.</p>
+        <a class="ig-link" href="https://www.instagram.com/abdelfettah_soukdal/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="17" height="17"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          <span data-i18n="cat.igLabel">Segui su Instagram</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTEGA -->
+  <section id="bottega" class="section-alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div data-reveal>
+          <div class="eyebrow" data-i18n="shop.eyebrow">La Bottega</div>
+          <h2 class="h-lg" data-i18n="shop.title">Materiali dal Marocco</h2>
+        </div>
+        <div data-reveal>
+          <p class="body-lg" data-i18n="shop.body">Calce di Marrakech, frattazzi in legno di cedro, sapone nero, spezie e tè alla menta: tutto ciò che serve per portare il Marocco a casa tua, selezionato e importato direttamente.</p>
+        </div>
+      </div>
+
+      <div class="shop-band">
+        <div class="shop-item" data-reveal>
+          <img src="https://export-download.canva.com/9eJPQ/DAHQZK9eJPQ/-1/0/0001-1371856691606546427.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T061644Z&X-Amz-Expires=28579&X-Amz-Signature=bd9c0afedf27a02d7a84cb3d294a845d18d54c4d4f8d08b7ac211379d8356df8&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A13%3A03%20GMT" alt="Calce di Marrakech" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.i1">Calce di Marrakech, 20kg</h4>
+          <span class="price">€85,00</span>
+        </div>
+        <div class="shop-item" data-reveal>
+          <img src="https://export-download.canva.com/5NvXI/DAHQZA5NvXI/-1/0/0001-8331044015105381209.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T073428Z&X-Amz-Expires=24126&X-Amz-Signature=66c685bd779e58a70d88f5495f6113c0f0d4dd29256d4819a408fd5cf3764e31&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A16%3A34%20GMT" alt="Frattazzo in cedro" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.i2">Frattazzo in Legno di Cedro</h4>
+          <span class="price">€5,00 – €20,00</span>
+        </div>
+        <div class="shop-item" data-reveal>
+          <img src="https://export-download.canva.com/2Y_-s/DAHQZP2Y_-s/-1/0/0001-7832270355895455375.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T202519Z&X-Amz-Expires=63225&X-Amz-Signature=0ec41e38a22dfb797d608c6d955c9c2946ec8e271e61744d24aa0e10665acf22&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A59%3A04%20GMT" alt="Sapone nero" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.i3">Sapone Nero Marocchino</h4>
+          <span class="price">€6,00 – €49,00</span>
+        </div>
+        <div class="shop-item" data-reveal>
+          <img src="https://export-download.canva.com/KhAb8/DAHQZAKhAb8/-1/0/0001-5283232967997556112.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T215507Z&X-Amz-Expires=57430&X-Amz-Signature=c48fe2690722cb5b120f1b5953586f87850a404daf7efd0c0c0b22838ac99939&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A52%3A17%20GMT" alt="Spezie e tè" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.i4">Set Spezie &amp; Tè alla Menta</h4>
+          <span class="price">€18,00</span>
+        </div>
+      </div>
+      <div style="margin-top:44px;">
+        <a href="#contatti" class="btn btn-solid" data-i18n="shop.cta">Vai alla Bottega</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="test.eyebrow">Testimonianze</div>
+      <h2 class="h-lg" data-i18n="test.title">Chi Ha Vissuto Riad Atelier</h2>
+      <div class="quote-row">
+        <blockquote data-reveal>
+          <p data-i18n="test.q1">"Un lavoro impeccabile, il bagno sembra uscito da un riad di Marrakech."</p>
+          <cite data-i18n="test.a1">Cliente privato - Milano</cite>
+        </blockquote>
+        <blockquote data-reveal>
+          <p data-i18n="test.q2">"Il corso di cucina è stato un'esperienza autentica, non una semplice lezione."</p>
+          <cite data-i18n="test.a2">Cliente privato - Torino</cite>
+        </blockquote>
+        <blockquote data-reveal>
+          <p data-i18n="test.q3">"Professionalità marocchina e affidabilità italiana: la combinazione perfetta."</p>
+          <cite data-i18n="test.a3">Studio di Architettura - Como</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section id="contatti" class="section-alt">
+    <div class="wrap contact-grid">
+      <div data-reveal>
+        <div class="eyebrow" data-i18n="contact.eyebrow">Contatti</div>
+        <h2 class="h-lg" style="margin-bottom:36px;" data-i18n="contact.title">Parliamone</h2>
+
+        <div class="info-block">
+          <div class="eyebrow" data-i18n="contact.emailLabel">Email</div>
+          <a href="mailto:verde-servizi@pec.it">verde-servizi@pec.it</a>
+        </div>
+        <div class="info-block">
+          <div class="eyebrow" data-i18n="contact.phoneLabel">Telefono</div>
+          <a href="tel:+390000000000">+39 000 000 0000</a>
+        </div>
+        <div class="info-block">
+          <div class="eyebrow" data-i18n="contact.locationLabel">Sede</div>
+          <p data-i18n="contact.location1" style="margin:0 0 2px;">Marrakech, Marocco</p>
+          <p data-i18n="contact.location2" style="margin:0;">&amp; Milano, Italia</p>
+        </div>
+      </div>
+
+      <form data-reveal onsubmit="event.preventDefault(); alert(t('contact.sent'));">
+        <div class="field">
+          <label data-i18n="contact.name">Nome</label>
+          <input type="text" required>
+        </div>
+        <div class="field">
+          <label data-i18n="contact.emailField">Email</label>
+          <input type="email" required>
+        </div>
+        <div class="field">
+          <label data-i18n="contact.subjectLabel">Oggetto della richiesta</label>
+          <select id="contact-subject" required>
+            <option value="" data-i18n="contact.subject.placeholder">Seleziona...</option>
+            <option value="tadelakt" data-i18n="contact.subject.tadelakt">Preventivo Tadelakt</option>
+            <option value="cook1" data-i18n="contact.subject.cook1">Corso: Tajine &amp; Couscous</option>
+            <option value="cook2" data-i18n="contact.subject.cook2">Corso: Pastilla &amp; Dolci</option>
+            <option value="cook3" data-i18n="contact.subject.cook3">Corso: Tè alla Menta</option>
+            <option value="cook4" data-i18n="contact.subject.cook4">Corso Privato su Misura</option>
+          </select>
+        </div>
+        <div class="field">
+          <label data-i18n="contact.message">Messaggio</label>
+          <textarea rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-solid" data-i18n="contact.send">Invia</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="brand">
+          <svg class="brand-mark" viewBox="0 0 34 34" fill="none">
+            <line x1="17" y1="4" x2="17" y2="30" stroke="#c98a2c" stroke-width="1"/>
+            <text x="8" y="25.5" font-family="Fraunces, serif" font-weight="600" font-size="18" fill="#f2e9d8">R</text>
+            <text x="17.5" y="18.5" font-family="Fraunces, serif" font-weight="600" font-size="18" fill="#f2e9d8">A</text>
+          </svg>
+          Riad Atelier
+        </a>
+        <p class="blurb" data-i18n="footer.blurb">Artigianato del tadelakt e cucina marocchina, portati in Italia con rispetto per la tradizione.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5 data-i18n="footer.explore">Esplora</h5>
+          <a href="#tadelakt" data-i18n="nav.tadelakt">Tadelakt</a>
+          <a href="#cucina" data-i18n="nav.cooking">Corsi di Cucina</a>
+          <a href="#bottega" data-i18n="nav.shop">Bottega</a>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.follow">Seguici</h5>
+          <a href="https://www.instagram.com/abdelfettah_soukdal/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Riad Atelier</span>
+      <span data-i18n="footer.rights">Tutti i diritti riservati</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  it: {
+    "nav.tadelakt":"Tadelakt","nav.artisans":"Artigiani","nav.cooking":"Corsi di Cucina","nav.shop":"Bottega","nav.about":"Chi Siamo","nav.contact":"Contatti",
+    "motto.text":"Imparare, Realizzare e Vivere l'Autenticità Marocchina nel Cuore della Civiltà Romana.",
+    "hero.eyebrow":"Artigianato & Convivialità Marocchina",
+    "hero.lead":"Dalle mani dei maestri di Marrakech alle case e alle tavole d'Italia: calce, spezie, ospitalità.",
+    "hero.cta1":"Scopri il Tadelakt","hero.cta2":"Prenota un Corso",
+    "ph.hero":"Foto: bagno in tadelakt","ph.tadelakt":"Foto: superficie tadelakt","ph.g1":"Bagno turchese","ph.g2":"Hammam privato","ph.g3":"Parete decorativa",
+    "ph.a1":"Ritratto coach","ph.a2":"Ritratto manager","ph.a3":"Ritratto artigiano","ph.a4":"Ritratto artigiano","ph.cucina":"Foto: tavola marocchina",
+    "ph.shop1":"Calce di Marrakech","ph.shop2":"Frattazzo in cedro","ph.shop3":"Sapone nero","ph.shop4":"Spezie e tè",
+    "story.eyebrow":"La Nostra Storia","story.title":"Due Arti, Una Sola Radice",
+    "story.body":"Nel riad marocchino, l'arte di rivestire un muro e l'arte di preparare un tajine nascono dallo stesso gesto: accogliere. Riad Atelier porta in Italia questa doppia eredità - la calce lucida del tadelakt e i sapori delle cucine di Marrakech - attraverso artigiani e maestri di cucina formati secondo la tradizione.",
+    "tad.eyebrow":"Il Tadelakt","tad.title":"La Calce che Respira",
+    "tad.body":"Tecnica millenaria nata negli hammam di Marrakech, il tadelakt trasforma bagni, docce, cucine e pareti in superfici lucide, calde e naturalmente impermeabili. I nostri artigiani, formati secondo il metodo tradizionale, lavorano in tutta Italia per hotel, architetti e privati.",
+    "tad.cta":"Richiedi un Preventivo",
+    "tad.s1.t":"Bagni & Hammam Privati","tad.s1.d":"Superfici lucide, resistenti all'umidità, su misura per il tuo bagno.",
+    "tad.s2.t":"Cucine & Superfici ad Acqua","tad.s2.d":"Piani e rivestimenti a contatto con acqua, naturali e senza fughe.",
+    "tad.s3.t":"Pareti & Nicchie Decorative","tad.s3.d":"Superfici materiche per interni residenziali e contract.",
+    "tad.s4.t":"Restauro & Manutenzione","tad.s4.d":"Ripristino di superfici esistenti secondo la tecnica originale.",
+    "gallery.c1":"Bagno turchese - Milano","gallery.c2":"Hammam privato - Torino","gallery.c3":"Parete decorativa - Como",
+    "media.photo":"Foto","media.video":"Video","cat.igLabel":"Segui su Instagram",
+    "cat.tad.eyebrow":"Catalogo Esperienze","cat.tad.title":"Foto e Video dei Nostri Cantieri",
+    "cat.tad.body":"Uno sguardo reale sul lavoro dei nostri artigiani: superfici in lavorazione, risultati finiti e il feedback di chi ha scelto Riad Atelier.",
+    "cat.tad.1":"Applicazione del tadelakt, ripresa dal vivo","cat.tad.1c":"Lavorazione in corso - Milano",
+    "cat.tad.2":"Bagno completato, superficie lucida","cat.tad.2c":"Bagno privato - Torino",
+    "cat.tad.3":"Dettaglio texture e finitura a mano","cat.tad.3c":"Dettaglio finitura",
+    "cat.tad.4":"Testimonianza di un cliente privato","cat.tad.4c":"Testimonianza cliente",
+    "cat.tad.5":"Prima e dopo di una parete decorativa","cat.tad.5c":"Prima / Dopo - Como",
+    "cat.tad.6":"Hammam privato, vista d'insieme","cat.tad.6c":"Hammam privato",
+    "cat.tad.7":"Mani dell'artigiano al lavoro","cat.tad.7c":"Il gesto dell'artigiano",
+    "cat.tad.8":"Consegna cantiere, sopralluogo finale","cat.tad.8c":"Consegna del cantiere",
+    "cat.tad.note":"Altre foto e video dei cantieri sono pubblicati regolarmente sul nostro Instagram.",
+    "cat.cook.eyebrow":"Catalogo Esperienze","cat.cook.title":"Foto e Video dei Nostri Corsi",
+    "cat.cook.body":"I momenti vissuti a tavola e ai fornelli: preparazioni, gesti tramandati e le impressioni di chi ha partecipato ai nostri corsi.",
+    "cat.cook.1":"Preparazione del tajine in classe","cat.cook.1c":"Corso Tajine & Couscous",
+    "cat.cook.2":"Tavola marocchina apparecchiata","cat.cook.2c":"Tavola finale",
+    "cat.cook.3":"Lavorazione della pastilla a mano","cat.cook.3c":"Corso Pastilla & Dolci",
+    "cat.cook.4":"Il rituale del tè versato da alto","cat.cook.4c":"Rituale del tè alla menta",
+    "cat.cook.5":"Gruppo di allievi durante il corso","cat.cook.5c":"Piccolo gruppo",
+    "cat.cook.6":"Testimonianza di un allievo","cat.cook.6c":"Testimonianza allievo",
+    "cat.cook.7":"Corso privato per un evento aziendale","cat.cook.7c":"Corso privato / evento",
+    "cat.cook.8":"Spezie e ingredienti selezionati","cat.cook.8c":"Ingredienti & spezie",
+    "cat.cook.note":"Altre foto e video dei corsi sono pubblicati regolarmente sul nostro Instagram.",
+    "art.eyebrow":"Gli Artigiani","art.title":"I Nostri Maestri",
+    "art.body":"Selezioniamo artigiani marocchini con anni di esperienza diretta a Marrakech, li accompagniamo in Italia e ne curiamo la formazione continua, per garantire un tadelakt fedele alla tradizione, cantiere dopo cantiere.",
+    "art.role1":"Coach Tadelakt & Cucina - 15 anni di cucina, 5 di tadelakt","art.role2":"Manager Tadelakt - 13 anni d'esperienza","art.role3":"Artigiano Tadelakt - 8 anni d'esperienza","art.role4":"Artigiano Tadelakt - 9 anni d'esperienza",
+    "art.desc1":"Esperienza maturata principalmente in Marocco: forma i nostri artigiani e maestri di cucina, unendo le due tradizioni.",
+    "art.desc2":"13 anni di esperienza maturati principalmente in Marocco; oggi coordina i cantieri e i team di artigiani tadelakt in Italia.",
+    "art.desc3":"Esperienza maturata principalmente in Marocco: specialista nella lavorazione della calce su superfici curve e bagni.",
+    "art.desc4":"Formato a Marrakech, dove ha maturato la maggior parte della sua esperienza; applica il tadelakt su cantieri residenziali e contract in Italia.",
+    "cook.eyebrow":"Corsi di Cucina","cook.title":"A Tavola con Marrakech",
+    "cook.body":"Piccoli gruppi, ingredienti autentici, gesti tramandati: impara a preparare tajine, couscous, pastilla e il rituale del tè alla menta, guidato da chi la cucina marocchina la vive ogni giorno.",
+    "cook.c1.tag":"Corso Base","cook.c1.t":"Tajine & Couscous","cook.c1.d":"Le basi della cucina marocchina quotidiana, dalla spezia al piatto finito.",
+    "cook.c2.tag":"Pasticceria","cook.c2.t":"Pastilla & Dolci","cook.c2.d":"Sfoglie sottili, mandorle e miele: i segreti della pasticceria marocchina.",
+    "cook.c3.tag":"Rituale","cook.c3.t":"Tè alla Menta","cook.c3.d":"L'arte di versare il tè, tra gesto, ospitalità e convivialità.",
+    "cook.c4.tag":"Su Misura","cook.c4.t":"Corso Privato","cook.c4.d":"Per gruppi, aziende o eventi: un'esperienza marocchina su richiesta.",
+    "cook.book":"Prenota →",
+    "shop.eyebrow":"La Bottega","shop.title":"Materiali dal Marocco",
+    "shop.body":"Calce di Marrakech, frattazzi in legno di cedro, sapone nero, spezie e tè alla menta: tutto ciò che serve per portare il Marocco a casa tua, selezionato e importato direttamente.",
+    "shop.i1":"Calce di Marrakech, 20kg","shop.i2":"Frattazzo in Legno di Cedro","shop.i3":"Sapone Nero Marocchino","shop.i4":"Set Spezie & Tè alla Menta",
+    "shop.cta":"Vai alla Bottega",
+    "test.eyebrow":"Testimonianze","test.title":"Chi Ha Vissuto Riad Atelier",
+    "test.q1":"\"Un lavoro impeccabile, il bagno sembra uscito da un riad di Marrakech.\"","test.a1":"Cliente privato - Milano",
+    "test.q2":"\"Il corso di cucina è stato un'esperienza autentica, non una semplice lezione.\"","test.a2":"Cliente privato - Torino",
+    "test.q3":"\"Professionalità marocchina e affidabilità italiana: la combinazione perfetta.\"","test.a3":"Studio di Architettura - Como",
+    "contact.eyebrow":"Contatti","contact.title":"Parliamone",
+    "contact.emailLabel":"Email","contact.phoneLabel":"Telefono","contact.locationLabel":"Sede","contact.location1":"Marrakech, Marocco","contact.location2":"& Milano, Italia",
+    "contact.name":"Nome","contact.emailField":"Email","contact.message":"Messaggio","contact.send":"Invia",
+    "contact.subjectLabel":"Oggetto della richiesta",
+    "contact.subject.placeholder":"Seleziona...",
+    "contact.subject.tadelakt":"Preventivo Tadelakt",
+    "contact.subject.cook1":"Corso: Tajine & Couscous",
+    "contact.subject.cook2":"Corso: Pastilla & Dolci",
+    "contact.subject.cook3":"Corso: Tè alla Menta",
+    "contact.subject.cook4":"Corso Privato su Misura",
+    "contact.sent":"Grazie! Ti risponderemo al più presto.",
+    "footer.blurb":"Artigianato del tadelakt e cucina marocchina, portati in Italia con rispetto per la tradizione.",
+    "footer.explore":"Esplora","footer.follow":"Seguici","footer.rights":"Tutti i diritti riservati"
+  },
+  en: {
+    "nav.tadelakt":"Tadelakt","nav.artisans":"Artisans","nav.cooking":"Cooking Classes","nav.shop":"Shop","nav.about":"About","nav.contact":"Contact",
+    "motto.text":"Learn, Create and Live Moroccan Authenticity at the Heart of Roman Civilization.",
+    "hero.eyebrow":"Moroccan Craft & Conviviality",
+    "hero.lead":"From the hands of Marrakech's master craftsmen to Italy's homes and tables: lime, spice, and hospitality.",
+    "hero.cta1":"Discover Tadelakt","hero.cta2":"Book a Class",
+    "ph.hero":"Photo: tadelakt bathroom","ph.tadelakt":"Photo: tadelakt surface","ph.g1":"Turquoise bathroom","ph.g2":"Private hammam","ph.g3":"Decorative wall",
+    "ph.a1":"Coach portrait","ph.a2":"Manager portrait","ph.a3":"Craftsman portrait","ph.a4":"Craftsman portrait","ph.cucina":"Photo: Moroccan table",
+    "ph.shop1":"Marrakech lime","ph.shop2":"Cedar trowel","ph.shop3":"Black soap","ph.shop4":"Spices & tea",
+    "story.eyebrow":"Our Story","story.title":"Two Crafts, One Root",
+    "story.body":"In the Moroccan riad, the art of finishing a wall and the art of preparing a tajine spring from the same gesture: hospitality. Riad Atelier brings this dual heritage to Italy - the polished lime of tadelakt and the flavours of Marrakech's kitchens - through craftsmen and cooking masters trained in the tradition.",
+    "tad.eyebrow":"Tadelakt","tad.title":"The Lime That Breathes",
+    "tad.body":"A centuries-old technique born in the hammams of Marrakech, tadelakt transforms bathrooms, showers, kitchens and walls into surfaces that are polished, warm and naturally water-resistant. Our craftsmen, trained in the traditional method, work throughout Italy for hotels, architects and private clients.",
+    "tad.cta":"Request a Quote",
+    "tad.s1.t":"Private Bathrooms & Hammams","tad.s1.d":"Polished, moisture-resistant surfaces, tailored to your bathroom.",
+    "tad.s2.t":"Kitchens & Water-Facing Surfaces","tad.s2.d":"Natural, seamless surfaces in contact with water.",
+    "tad.s3.t":"Decorative Walls & Niches","tad.s3.d":"Textured surfaces for residential and contract interiors.",
+    "tad.s4.t":"Restoration & Maintenance","tad.s4.d":"Restoring existing surfaces using the original technique.",
+    "gallery.c1":"Turquoise bathroom - Milan","gallery.c2":"Private hammam - Turin","gallery.c3":"Decorative wall - Como",
+    "media.photo":"Photo","media.video":"Video","cat.igLabel":"Follow on Instagram",
+    "cat.tad.eyebrow":"Experience Catalog","cat.tad.title":"Photos & Videos of Our Projects",
+    "cat.tad.body":"A real look at our craftsmen's work: surfaces in progress, finished results, and feedback from those who chose Riad Atelier.",
+    "cat.tad.1":"Tadelakt application, filmed live","cat.tad.1c":"Work in progress - Milan",
+    "cat.tad.2":"Finished bathroom, polished surface","cat.tad.2c":"Private bathroom - Turin",
+    "cat.tad.3":"Texture detail and hand finishing","cat.tad.3c":"Finish detail",
+    "cat.tad.4":"A private client's testimonial","cat.tad.4c":"Client testimonial",
+    "cat.tad.5":"Before and after of a decorative wall","cat.tad.5c":"Before / After - Como",
+    "cat.tad.6":"Private hammam, overall view","cat.tad.6c":"Private hammam",
+    "cat.tad.7":"The craftsman's hands at work","cat.tad.7c":"The craftsman's gesture",
+    "cat.tad.8":"Site handover, final walkthrough","cat.tad.8c":"Project handover",
+    "cat.tad.note":"More photos and videos of our projects are posted regularly on our Instagram.",
+    "cat.cook.eyebrow":"Experience Catalog","cat.cook.title":"Photos & Videos of Our Classes",
+    "cat.cook.body":"Moments lived at the table and by the stove: preparations, gestures passed down, and impressions from those who joined our classes.",
+    "cat.cook.1":"Preparing the tajine in class","cat.cook.1c":"Tajine & Couscous class",
+    "cat.cook.2":"Moroccan table set for the meal","cat.cook.2c":"The finished table",
+    "cat.cook.3":"Hand-shaping the pastilla","cat.cook.3c":"Pastilla & Sweets class",
+    "cat.cook.4":"The tea ritual, poured from high","cat.cook.4c":"Mint tea ritual",
+    "cat.cook.5":"A small group during class","cat.cook.5c":"Small group",
+    "cat.cook.6":"A student's testimonial","cat.cook.6c":"Student testimonial",
+    "cat.cook.7":"A private class for a corporate event","cat.cook.7c":"Private class / event",
+    "cat.cook.8":"Selected spices and ingredients","cat.cook.8c":"Ingredients & spices",
+    "cat.cook.note":"More photos and videos of our classes are posted regularly on our Instagram.",
+    "art.eyebrow":"The Artisans","art.title":"Our Master Craftsmen",
+    "art.body":"We select Moroccan craftsmen with years of hands-on experience in Marrakech, guide them to Italy, and support their ongoing training - ensuring tadelakt faithful to tradition on every project.",
+    "art.role1":"Tadelakt & Cooking Coach - 15 years cooking, 5 years tadelakt","art.role2":"Tadelakt Manager - 13 years' experience","art.role3":"Tadelakt Craftsman - 8 years' experience","art.role4":"Tadelakt Craftsman - 9 years' experience",
+    "art.desc1":"Experience gained mainly in Morocco: trains our craftsmen and cooking masters, bridging both traditions.",
+    "art.desc2":"13 years' experience gained mainly in Morocco; now coordinates job sites and tadelakt craftsman teams in Italy.",
+    "art.desc3":"Experience gained mainly in Morocco: specialist in lime plaster work on curved surfaces and bathrooms.",
+    "art.desc4":"Trained in Marrakech, where he gained most of his experience; applies tadelakt on residential and contract projects in Italy.",
+    "cook.eyebrow":"Cooking Classes","cook.title":"At the Table with Marrakech",
+    "cook.body":"Small groups, authentic ingredients, time-honoured gestures: learn to prepare tajine, couscous, pastilla and the mint tea ritual, guided by those who live Moroccan cooking every day.",
+    "cook.c1.tag":"Beginner","cook.c1.t":"Tajine & Couscous","cook.c1.d":"The fundamentals of everyday Moroccan cooking, from spice to plate.",
+    "cook.c2.tag":"Pastry","cook.c2.t":"Pastilla & Sweets","cook.c2.d":"Thin pastry, almonds and honey: the secrets of Moroccan pastry.",
+    "cook.c3.tag":"Ritual","cook.c3.t":"Mint Tea Ritual","cook.c3.d":"The art of pouring tea, between gesture, hospitality and conviviality.",
+    "cook.c4.tag":"Custom","cook.c4.t":"Private Class","cook.c4.d":"For groups, companies or events: a Moroccan experience on request.",
+    "cook.book":"Book →",
+    "shop.eyebrow":"The Shop","shop.title":"Materials from Morocco",
+    "shop.body":"Marrakech lime, cedar wood trowels, black soap, spices and mint tea: everything you need to bring Morocco home, selected and imported directly.",
+    "shop.i1":"Marrakech Lime, 20kg","shop.i2":"Cedar Wood Trowel","shop.i3":"Moroccan Black Soap","shop.i4":"Spice & Mint Tea Set",
+    "shop.cta":"Visit the Shop",
+    "test.eyebrow":"Testimonials","test.title":"Those Who Experienced Riad Atelier",
+    "test.q1":"\"Impeccable work, the bathroom feels like it came straight from a Marrakech riad.\"","test.a1":"Private client - Milan",
+    "test.q2":"\"The cooking class was an authentic experience, not just a lesson.\"","test.a2":"Private client - Turin",
+    "test.q3":"\"Moroccan craftsmanship and Italian reliability: the perfect combination.\"","test.a3":"Architecture Studio - Como",
+    "contact.eyebrow":"Contact","contact.title":"Let's Talk",
+    "contact.emailLabel":"Email","contact.phoneLabel":"Phone","contact.locationLabel":"Location","contact.location1":"Marrakech, Morocco","contact.location2":"& Milan, Italy",
+    "contact.name":"Name","contact.emailField":"Email","contact.message":"Message","contact.send":"Send",
+    "contact.subjectLabel":"Subject of your request",
+    "contact.subject.placeholder":"Select...",
+    "contact.subject.tadelakt":"Tadelakt Quote",
+    "contact.subject.cook1":"Class: Tajine & Couscous",
+    "contact.subject.cook2":"Class: Pastilla & Sweets",
+    "contact.subject.cook3":"Class: Mint Tea Ritual",
+    "contact.subject.cook4":"Custom Private Class",
+    "contact.sent":"Thank you! We'll get back to you shortly.",
+    "footer.blurb":"Tadelakt craftsmanship and Moroccan cooking, brought to Italy with respect for tradition.",
+    "footer.explore":"Explore","footer.follow":"Follow","footer.rights":"All rights reserved"
+  },
+  fr: {
+    "nav.tadelakt":"Tadelakt","nav.artisans":"Artisans","nav.cooking":"Cours de Cuisine","nav.shop":"Boutique","nav.about":"À Propos","nav.contact":"Contact",
+    "motto.text":"Apprendre, Réaliser et Vivre l'Authenticité Marocaine au Cœur de la Civilisation Romaine.",
+    "hero.eyebrow":"Artisanat & Convivialité Marocaine",
+    "hero.lead":"Des mains des maîtres artisans de Marrakech aux maisons et aux tables d'Italie : chaux, épices et hospitalité.",
+    "hero.cta1":"Découvrir le Tadelakt","hero.cta2":"Réserver un Cours",
+    "ph.hero":"Photo : salle de bain en tadelakt","ph.tadelakt":"Photo : surface tadelakt","ph.g1":"Salle de bain turquoise","ph.g2":"Hammam privé","ph.g3":"Mur décoratif",
+    "ph.a1":"Portrait coach","ph.a2":"Portrait manager","ph.a3":"Portrait artisan","ph.a4":"Portrait artisan","ph.cucina":"Photo : table marocaine",
+    "ph.shop1":"Chaux de Marrakech","ph.shop2":"Taloche en cèdre","ph.shop3":"Savon noir","ph.shop4":"Épices et thé",
+    "story.eyebrow":"Notre Histoire","story.title":"Deux Arts, Une Seule Racine",
+    "story.body":"Dans le riad marocain, l'art de sublimer un mur et l'art de préparer un tajine naissent du même geste : accueillir. Riad Atelier apporte en Italie ce double héritage - la chaux polie du tadelakt et les saveurs des cuisines de Marrakech - à travers des artisans et des maîtres de cuisine formés selon la tradition.",
+    "tad.eyebrow":"Le Tadelakt","tad.title":"La Chaux qui Respire",
+    "tad.body":"Technique millénaire née dans les hammams de Marrakech, le tadelakt transforme salles de bains, douches, cuisines et murs en surfaces polies, chaleureuses et naturellement imperméables. Nos artisans, formés selon la méthode traditionnelle, travaillent dans toute l'Italie pour des hôtels, architectes et particuliers.",
+    "tad.cta":"Demander un Devis",
+    "tad.s1.t":"Salles de Bains & Hammams Privés","tad.s1.d":"Surfaces polies, résistantes à l'humidité, sur mesure pour votre salle de bain.",
+    "tad.s2.t":"Cuisines & Surfaces en Contact avec l'Eau","tad.s2.d":"Plans et revêtements naturels, sans joints, au contact de l'eau.",
+    "tad.s3.t":"Murs & Niches Décoratives","tad.s3.d":"Surfaces texturées pour intérieurs résidentiels et contract.",
+    "tad.s4.t":"Restauration & Entretien","tad.s4.d":"Remise en état de surfaces existantes selon la technique originale.",
+    "gallery.c1":"Salle de bain turquoise - Milan","gallery.c2":"Hammam privé - Turin","gallery.c3":"Mur décoratif - Côme",
+    "media.photo":"Photo","media.video":"Vidéo","cat.igLabel":"Suivre sur Instagram",
+    "cat.tad.eyebrow":"Catalogue d'Expériences","cat.tad.title":"Photos et Vidéos de Nos Chantiers",
+    "cat.tad.body":"Un regard réel sur le travail de nos artisans : surfaces en cours de réalisation, résultats finis et retours de ceux qui ont choisi Riad Atelier.",
+    "cat.tad.1":"Application du tadelakt, filmée en direct","cat.tad.1c":"Chantier en cours - Milan",
+    "cat.tad.2":"Salle de bain terminée, surface polie","cat.tad.2c":"Salle de bain privée - Turin",
+    "cat.tad.3":"Détail de texture et finition à la main","cat.tad.3c":"Détail de finition",
+    "cat.tad.4":"Témoignage d'un client privé","cat.tad.4c":"Témoignage client",
+    "cat.tad.5":"Avant / après d'un mur décoratif","cat.tad.5c":"Avant / Après - Côme",
+    "cat.tad.6":"Hammam privé, vue d'ensemble","cat.tad.6c":"Hammam privé",
+    "cat.tad.7":"Les mains de l'artisan au travail","cat.tad.7c":"Le geste de l'artisan",
+    "cat.tad.8":"Réception du chantier, visite finale","cat.tad.8c":"Réception du chantier",
+    "cat.tad.note":"D'autres photos et vidéos de nos chantiers sont publiées régulièrement sur notre Instagram.",
+    "cat.cook.eyebrow":"Catalogue d'Expériences","cat.cook.title":"Photos et Vidéos de Nos Cours",
+    "cat.cook.body":"Les moments vécus à table et aux fourneaux : préparations, gestes transmis et impressions de ceux qui ont participé à nos cours.",
+    "cat.cook.1":"Préparation du tajine en cours","cat.cook.1c":"Cours Tajine & Couscous",
+    "cat.cook.2":"Table marocaine dressée","cat.cook.2c":"La table finale",
+    "cat.cook.3":"Façonnage de la pastilla à la main","cat.cook.3c":"Cours Pastilla & Douceurs",
+    "cat.cook.4":"Le rituel du thé versé de haut","cat.cook.4c":"Rituel du thé à la menthe",
+    "cat.cook.5":"Un petit groupe pendant le cours","cat.cook.5c":"Petit groupe",
+    "cat.cook.6":"Témoignage d'un participant","cat.cook.6c":"Témoignage participant",
+    "cat.cook.7":"Cours privé pour un événement d'entreprise","cat.cook.7c":"Cours privé / événement",
+    "cat.cook.8":"Épices et ingrédients sélectionnés","cat.cook.8c":"Ingrédients & épices",
+    "cat.cook.note":"D'autres photos et vidéos de nos cours sont publiées régulièrement sur notre Instagram.",
+    "art.eyebrow":"Les Artisans","art.title":"Nos Maîtres Artisans",
+    "art.body":"Nous sélectionnons des artisans marocains ayant une longue expérience directe à Marrakech, les accompagnons en Italie et assurons leur formation continue, pour garantir un tadelakt fidèle à la tradition, chantier après chantier.",
+    "art.role1":"Coach Tadelakt & Cuisine - 15 ans en cuisine, 5 ans en tadelakt","art.role2":"Manager Tadelakt - 13 ans d'expérience","art.role3":"Artisan Tadelakt - 8 ans d'expérience","art.role4":"Artisan Tadelakt - 9 ans d'expérience",
+    "art.desc1":"Expérience acquise principalement au Maroc : forme nos artisans et maîtres de cuisine, en unissant les deux traditions.",
+    "art.desc2":"13 ans d'expérience acquis principalement au Maroc ; coordonne aujourd'hui les chantiers et les équipes d'artisans tadelakt en Italie.",
+    "art.desc3":"Expérience acquise principalement au Maroc : spécialiste de la chaux sur surfaces courbes et salles de bains.",
+    "art.desc4":"Formé à Marrakech, où il a acquis l'essentiel de son expérience ; applique le tadelakt sur des chantiers résidentiels et contract en Italie.",
+    "cook.eyebrow":"Cours de Cuisine","cook.title":"À Table avec Marrakech",
+    "cook.body":"Petits groupes, ingrédients authentiques, gestes transmis : apprenez à préparer tajine, couscous, pastilla et le rituel du thé à la menthe, guidé par ceux qui vivent la cuisine marocaine au quotidien.",
+    "cook.c1.tag":"Cours de Base","cook.c1.t":"Tajine & Couscous","cook.c1.d":"Les bases de la cuisine marocaine du quotidien, de l'épice à l'assiette.",
+    "cook.c2.tag":"Pâtisserie","cook.c2.t":"Pastilla & Douceurs","cook.c2.d":"Pâtes fines, amandes et miel : les secrets de la pâtisserie marocaine.",
+    "cook.c3.tag":"Rituel","cook.c3.t":"Thé à la Menthe","cook.c3.d":"L'art de verser le thé, entre geste, hospitalité et convivialité.",
+    "cook.c4.tag":"Sur Mesure","cook.c4.t":"Cours Privé","cook.c4.d":"Pour groupes, entreprises ou événements : une expérience marocaine sur demande.",
+    "cook.book":"Réserver →",
+    "shop.eyebrow":"La Boutique","shop.title":"Matériaux du Maroc",
+    "shop.body":"Chaux de Marrakech, taloches en bois de cèdre, savon noir, épices et thé à la menthe : tout ce qu'il faut pour ramener le Maroc chez vous, sélectionné et importé directement.",
+    "shop.i1":"Chaux de Marrakech, 20kg","shop.i2":"Taloche en Bois de Cèdre","shop.i3":"Savon Noir Marocain","shop.i4":"Set Épices & Thé à la Menthe",
+    "shop.cta":"Aller à la Boutique",
+    "test.eyebrow":"Témoignages","test.title":"Ceux Qui Ont Vécu Riad Atelier",
+    "test.q1":"\"Un travail impeccable, la salle de bain semble tout droit sortie d'un riad de Marrakech.\"","test.a1":"Client privé - Milan",
+    "test.q2":"\"Le cours de cuisine a été une expérience authentique, pas un simple cours.\"","test.a2":"Client privé - Turin",
+    "test.q3":"\"Savoir-faire marocain et fiabilité italienne : la combinaison parfaite.\"","test.a3":"Cabinet d'Architecture - Côme",
+    "contact.eyebrow":"Contact","contact.title":"Parlons-en",
+    "contact.emailLabel":"Email","contact.phoneLabel":"Téléphone","contact.locationLabel":"Adresse","contact.location1":"Marrakech, Maroc","contact.location2":"& Milan, Italie",
+    "contact.name":"Nom","contact.emailField":"Email","contact.message":"Message","contact.send":"Envoyer",
+    "contact.subjectLabel":"Objet de la demande",
+    "contact.subject.placeholder":"Sélectionner...",
+    "contact.subject.tadelakt":"Devis Tadelakt",
+    "contact.subject.cook1":"Cours : Tajine & Couscous",
+    "contact.subject.cook2":"Cours : Pastilla & Douceurs",
+    "contact.subject.cook3":"Cours : Rituel du Thé à la Menthe",
+    "contact.subject.cook4":"Cours Privé sur Mesure",
+    "contact.sent":"Merci ! Nous vous répondrons rapidement.",
+    "footer.blurb":"Artisanat du tadelakt et cuisine marocaine, apportés en Italie dans le respect de la tradition.",
+    "footer.explore":"Explorer","footer.follow":"Suivez-nous","footer.rights":"Tous droits réservés"
+  }
+};
+
+let currentLang = 'it';
+function t(key){ return translations[currentLang][key] || translations.it[key] || key; }
+
+function applyLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang] && translations[lang][key]){
+      el.textContent = translations[lang][key];
+    }
+  });
+  document.querySelectorAll('.lang-switch button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+}
+
+document.querySelectorAll('.lang-switch button').forEach(btn=>{
+  btn.addEventListener('click', ()=> applyLang(btn.getAttribute('data-lang')));
+});
+
+document.querySelector('.nav-toggle').addEventListener('click', ()=>{
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.cssText += 'flex-direction:column; position:absolute; top:100%; left:0; right:0; background:var(--paper); padding:20px 28px; border-bottom:1px solid var(--line);';
+});
+
+document.querySelectorAll('.js-book').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const subject = btn.getAttribute('data-subject');
+    const select = document.getElementById('contact-subject');
+    if(select && subject){
+      select.value = subject;
+      select.dispatchEvent(new Event('change'));
+    }
+  });
+});
+
+const revealEls = document.querySelectorAll('[data-reveal]');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+  });
+}, {threshold:0.15});
+revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
