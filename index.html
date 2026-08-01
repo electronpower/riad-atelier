@@ -740,10 +740,10 @@
       <p class="body-lg" data-i18n="cat.tad.body">Uno sguardo reale sul lavoro dei nostri artigiani: superfici in lavorazione, risultati finiti e il feedback di chi ha scelto Riad Atelier.</p>
 
       <div class="catalog-grid">
-        <figure class="catalog-item is-visible" data-reveal="">
-          <video class="catalog-video" src="src/td-2.mp4" autoplay muted loop playsinline></video>
+        <figure class="catalog-item" data-reveal>
+          <div class="placeholder"><small data-i18n="cat.tad.1">Applicazione del tadelakt, ripresa dal vivo</small></div>
           <span class="media-tag" data-i18n="media.video">Video</span>
-          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"></polygon></svg></span>
+          <span class="play-icon"><svg viewBox="0 0 24 24" fill="#f2e9d8"><polygon points="7,4 20,12 7,20"/></svg></span>
           <figcaption data-i18n="cat.tad.1c">Lavorazione in corso - Milano</figcaption>
         </figure>
         <figure class="catalog-item" data-reveal>
@@ -831,7 +831,7 @@
         <div class="artisan-card" data-reveal>
           <div class="arch-frame"><div class="placeholder"><small data-i18n="ph.a4">Ritratto artigiano</small></div></div>
           <span class="role" data-i18n="art.role4">Artigiano Tadelakt - 9 anni d'esperienza</span>
-          <h4>Aziz Ennacir</h4>
+          <h4>Aziz En-naciri</h4>
           <p data-i18n="art.desc4">Formato a Marrakech, applica il tadelakt su cantieri residenziali e contract.</p>
         </div>
       </div>
@@ -1021,10 +1021,6 @@
           <a href="mailto:verde-servizi@pec.it">verde-servizi@pec.it</a>
         </div>
         <div class="info-block">
-          <div class="eyebrow" data-i18n="contact.phoneLabel">Telefono</div>
-          <a href="tel:+390000000000">+39 000 000 0000</a>
-        </div>
-        <div class="info-block">
           <div class="eyebrow" data-i18n="contact.locationLabel">Sede</div>
           <p data-i18n="contact.location1" style="margin:0 0 2px;">Marrakech, Marocco</p>
           <p data-i18n="contact.location2" style="margin:0;">&amp; Milano, Italia</p>
@@ -1096,6 +1092,15 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <div class="lightbox-media" id="lightboxMedia"></div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
 <script>
 const translations = {
   it: {
@@ -1153,7 +1158,7 @@ const translations = {
     "cook.c2.tag":"Pasticceria","cook.c2.t":"Pastilla & Dolci","cook.c2.d":"Sfoglie sottili, mandorle e miele: i segreti della pasticceria marocchina.",
     "cook.c3.tag":"Rituale","cook.c3.t":"Tè alla Menta","cook.c3.d":"L'arte di versare il tè, tra gesto, ospitalità e convivialità.",
     "cook.c4.tag":"Su Misura","cook.c4.t":"Corso Privato","cook.c4.d":"Per gruppi, aziende o eventi: un'esperienza marocchina su richiesta.",
-    "cook.book":"Prenota →",
+    "cook.book":"Prenota il corso di cucina →",
     "shop.eyebrow":"La Bottega","shop.title":"Materiali dal Marocco",
     "shop.body":"Calce di Marrakech, frattazzi in legno di cedro, sapone nero, spezie e tè alla menta: tutto ciò che serve per portare il Marocco a casa tua, selezionato e importato direttamente.",
     "shop.i1":"Calce di Marrakech, 20kg","shop.i2":"Frattazzo in Legno di Cedro","shop.i3":"Sapone Nero Marocchino","shop.i4":"Set Spezie & Tè alla Menta",
@@ -1163,7 +1168,7 @@ const translations = {
     "test.q2":"\"Il corso di cucina è stato un'esperienza autentica, non una semplice lezione.\"","test.a2":"Cliente privato - Torino",
     "test.q3":"\"Professionalità marocchina e affidabilità italiana: la combinazione perfetta.\"","test.a3":"Studio di Architettura - Como",
     "contact.eyebrow":"Contatti","contact.title":"Parliamone",
-    "contact.emailLabel":"Email","contact.phoneLabel":"Telefono","contact.locationLabel":"Sede","contact.location1":"Marrakech, Marocco","contact.location2":"& Milano, Italia",
+    "contact.emailLabel":"Email","contact.locationLabel":"Sede","contact.location1":"Marrakech, Marocco","contact.location2":"& Milano, Italia",
     "contact.name":"Nome","contact.emailField":"Email","contact.message":"Messaggio","contact.send":"Invia",
     "contact.subjectLabel":"Oggetto della richiesta",
     "contact.subject.placeholder":"Seleziona...",
@@ -1231,7 +1236,7 @@ const translations = {
     "cook.c2.tag":"Pastry","cook.c2.t":"Pastilla & Sweets","cook.c2.d":"Thin pastry, almonds and honey: the secrets of Moroccan pastry.",
     "cook.c3.tag":"Ritual","cook.c3.t":"Mint Tea Ritual","cook.c3.d":"The art of pouring tea, between gesture, hospitality and conviviality.",
     "cook.c4.tag":"Custom","cook.c4.t":"Private Class","cook.c4.d":"For groups, companies or events: a Moroccan experience on request.",
-    "cook.book":"Book →",
+    "cook.book":"Book the cooking class →",
     "shop.eyebrow":"The Shop","shop.title":"Materials from Morocco",
     "shop.body":"Marrakech lime, cedar wood trowels, black soap, spices and mint tea: everything you need to bring Morocco home, selected and imported directly.",
     "shop.i1":"Marrakech Lime, 20kg","shop.i2":"Cedar Wood Trowel","shop.i3":"Moroccan Black Soap","shop.i4":"Spice & Mint Tea Set",
@@ -1241,7 +1246,7 @@ const translations = {
     "test.q2":"\"The cooking class was an authentic experience, not just a lesson.\"","test.a2":"Private client - Turin",
     "test.q3":"\"Moroccan craftsmanship and Italian reliability: the perfect combination.\"","test.a3":"Architecture Studio - Como",
     "contact.eyebrow":"Contact","contact.title":"Let's Talk",
-    "contact.emailLabel":"Email","contact.phoneLabel":"Phone","contact.locationLabel":"Location","contact.location1":"Marrakech, Morocco","contact.location2":"& Milan, Italy",
+    "contact.emailLabel":"Email","contact.locationLabel":"Location","contact.location1":"Marrakech, Morocco","contact.location2":"& Milan, Italy",
     "contact.name":"Name","contact.emailField":"Email","contact.message":"Message","contact.send":"Send",
     "contact.subjectLabel":"Subject of your request",
     "contact.subject.placeholder":"Select...",
@@ -1309,7 +1314,7 @@ const translations = {
     "cook.c2.tag":"Pâtisserie","cook.c2.t":"Pastilla & Douceurs","cook.c2.d":"Pâtes fines, amandes et miel : les secrets de la pâtisserie marocaine.",
     "cook.c3.tag":"Rituel","cook.c3.t":"Thé à la Menthe","cook.c3.d":"L'art de verser le thé, entre geste, hospitalité et convivialité.",
     "cook.c4.tag":"Sur Mesure","cook.c4.t":"Cours Privé","cook.c4.d":"Pour groupes, entreprises ou événements : une expérience marocaine sur demande.",
-    "cook.book":"Réserver →",
+    "cook.book":"Réserver le cours de cuisine →",
     "shop.eyebrow":"La Boutique","shop.title":"Matériaux du Maroc",
     "shop.body":"Chaux de Marrakech, taloches en bois de cèdre, savon noir, épices et thé à la menthe : tout ce qu'il faut pour ramener le Maroc chez vous, sélectionné et importé directement.",
     "shop.i1":"Chaux de Marrakech, 20kg","shop.i2":"Taloche en Bois de Cèdre","shop.i3":"Savon Noir Marocain","shop.i4":"Set Épices & Thé à la Menthe",
@@ -1319,7 +1324,7 @@ const translations = {
     "test.q2":"\"Le cours de cuisine a été une expérience authentique, pas un simple cours.\"","test.a2":"Client privé - Turin",
     "test.q3":"\"Savoir-faire marocain et fiabilité italienne : la combinaison parfaite.\"","test.a3":"Cabinet d'Architecture - Côme",
     "contact.eyebrow":"Contact","contact.title":"Parlons-en",
-    "contact.emailLabel":"Email","contact.phoneLabel":"Téléphone","contact.locationLabel":"Adresse","contact.location1":"Marrakech, Maroc","contact.location2":"& Milan, Italie",
+    "contact.emailLabel":"Email","contact.locationLabel":"Adresse","contact.location1":"Marrakech, Maroc","contact.location2":"& Milan, Italie",
     "contact.name":"Nom","contact.emailField":"Email","contact.message":"Message","contact.send":"Envoyer",
     "contact.subjectLabel":"Objet de la demande",
     "contact.subject.placeholder":"Sélectionner...",
@@ -1371,6 +1376,30 @@ document.querySelectorAll('.js-book').forEach(btn=>{
     }
   });
 });
+
+// Lightbox for catalog photos & videos
+const lightbox = document.getElementById('lightbox');
+const lightboxMedia = document.getElementById('lightboxMedia');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+
+function openLightbox(item){
+  const media = item.querySelector('img, video, .placeholder');
+  lightboxMedia.innerHTML = media ? media.outerHTML : '';
+  const caption = item.querySelector('figcaption');
+  lightboxCaption.textContent = caption ? caption.textContent : '';
+  lightbox.classList.add('active');
+}
+function closeLightbox(){
+  lightbox.classList.remove('active');
+  lightboxMedia.innerHTML = '';
+}
+document.querySelectorAll('.catalog-item').forEach(item=>{
+  item.addEventListener('click', ()=> openLightbox(item));
+});
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
 
 const revealEls = document.querySelectorAll('[data-reveal]');
 const io = new IntersectionObserver((entries)=>{
