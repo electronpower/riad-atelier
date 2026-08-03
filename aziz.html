@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260731-05-8d4b1dd","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/1c274b9c2bdd3519.telemetry_sdk.js" integrity="sha512-QvDGWM2/VIwB7KXA4cwqkIBlxCdJGd0uO9ksM8wsqNKNiFgewrwdYlGY9ioCTg42Djm5Sw7uha/WH60UzzKOhQ=="></script>
+<html lang="it"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Aziz En-naciri</title>
@@ -84,7 +84,12 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:10px; text-align:center; padding:18px;
     color:var(--ink-soft);
+    cursor:pointer;
+    transition: opacity .2s ease, transform .2s ease;
+    overflow:hidden;
   }
+  .ph-media:hover{ opacity:0.85; }
+  .ph-media:active{ transform:scale(0.99); }
   .ph-media .ph-icon{ font-size:22px; opacity:0.55; }
   .ph-media .ph-label{
     font-family:'IBM Plex Mono', monospace;
@@ -95,6 +100,23 @@
     font-family:'IBM Plex Mono', monospace;
     font-size:9px; letter-spacing:0.08em; text-transform:uppercase;
     color:var(--clay); border:1px solid var(--clay); padding:3px 8px; border-radius:20px;
+  }
+  /* Once a real media URL loads successfully, the placeholder is
+     swapped for an actual thumbnail filling the same box. */
+  .ph-media.has-thumb{
+    border:none; background:none; padding:0; gap:0;
+  }
+  .ph-thumb{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .ph-play-badge{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:32px; color:var(--paper);
+    text-shadow:0 2px 14px rgba(0,0,0,0.55);
+    pointer-events:none;
   }
 
   header{ padding:26px 0; border-bottom:1px solid var(--line); }
@@ -158,12 +180,14 @@
     position:absolute; left:0; right:0; bottom:0; padding:12px 14px;
     font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.03em; color:var(--paper);
     background:linear-gradient(0deg, rgba(36,26,20,0.72), rgba(36,26,20,0));
+    pointer-events:none;
   }
   html.lang-ar .reel-item figcaption{ font-family:'Cairo', sans-serif; }
   .reel-item .ph-tag-corner{
     position:absolute; top:10px; inset-inline-start:10px;
     font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase;
     padding:3px 9px; background:rgba(36,26,20,0.6); color:var(--paper); border-radius:20px; z-index:2;
+    pointer-events:none;
   }
   @media (max-width:820px){ .reel-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:520px){ .reel-grid{ grid-template-columns:1fr; } }
@@ -192,23 +216,69 @@
     .hero-grid, .about-grid{ grid-template-columns:1fr; }
     .hero-portrait{ order:-1; max-width:280px; }
   }
-</style>
-<script src="/_sdk/797e0a7e8af7c7f8.resizing_sdk.js" integrity="sha512-giNZj5eBnASPpYcJXEVOn6FguxFDnaH+gnf5nbRfUgfRDqtOdV+5Dna/CwvXiPeR//Plhtbt32CML3VF4+oCLw=="></script><script src="/_sdk/63b5ed99e5b990a7.data_sdk.js" integrity="sha512-fLUGE0rNLPgXS9olxs6QORKg6Diqpi0PSKoNistdAaH/GruBuq5/XhrOdSOcKfqcIIRQ1KvO66J1vCBvvLj4rA=="></script></head>
-<body data-html-import-id="html-import-0" data-template-id="__page-root" style="background: rgb(242, 233, 216);">
 
-<header data-html-import-id="html-import-1">
-  <div class="wrap header-inner" data-html-import-id="html-import-2">
-    <a href="#top" class="brand canva-link" data-html-import-id="html-import-3" data-template-id="a-0" style="color: rgb(36, 26, 20); font-family: Fraunces; font-weight: 600; font-size: 18px;"><canva-inline-text data-template-id="canva-inline-text-1" class="canva-text" style="color: rgb(36, 26, 20); font-family: Fraunces; font-weight: 600; font-size: 18px;">Riad </canva-inline-text><span data-html-import-id="html-import-4" data-template-id="span-2" class="canva-text" style="color: rgb(28, 80, 105);">Atelier</span></a>
-    <div class="header-right" data-html-import-id="html-import-5">
-      <nav data-html-import-id="html-import-6">
-        <a href="#portfolio" data-i18n="nav.portfolio" data-html-import-id="html-import-7" data-template-id="a-3" class="canva-link" style="color: rgb(90, 74, 60); font-family: &quot;IBM Plex Mono&quot;; font-size: 12px;">PORTFOLIO</a>
-        <a href="#contatti" data-i18n="nav.contact" data-html-import-id="html-import-8" data-template-id="a-4" class="canva-link" style="color: rgb(90, 74, 60); font-family: &quot;IBM Plex Mono&quot;; font-size: 12px;">CONTATTI</a>
+  /* ===== Lightbox popup for photos & videos ===== */
+  .lightbox-overlay{
+    position:fixed; inset:0; z-index:9999;
+    background:rgba(36,26,20,0.94);
+    display:none; align-items:center; justify-content:center;
+    padding:56px 24px;
+  }
+  .lightbox-overlay.active{ display:flex; }
+  .lightbox-content{
+    position:relative;
+    width:min(920px, 92vw);
+    display:flex; flex-direction:column; align-items:center;
+  }
+  /* Fixed-ratio black stage: media always fills this box via object-fit,
+     regardless of the source's own dimensions or load state. */
+  .lightbox-stage{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/10;
+    max-height:78vh;
+    background:#000;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .lightbox-stage.is-portrait{ aspect-ratio:3/4; max-width:520px; margin:0 auto; }
+  .lightbox-stage img,
+  .lightbox-stage video{
+    width:100%; height:100%;
+    object-fit:contain;
+    display:block;
+  }
+  .lightbox-close{
+    position:absolute; top:-46px; right:0;
+    width:38px; height:38px;
+    background:transparent; border:1px solid rgba(242,233,216,0.6);
+    color:var(--paper); cursor:pointer;
+    font-family:'IBM Plex Mono', monospace; font-size:16px; line-height:1;
+    z-index:2;
+  }
+  .lightbox-close:hover{ background:var(--paper); color:var(--ink); border-color:var(--paper); }
+  .lightbox-caption{
+    margin-top:14px; text-align:center;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.04em;
+    color:rgba(242,233,216,0.8); text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="#top" class="brand">Riad <span>Atelier</span></a>
+    <div class="header-right">
+      <nav>
+        <a href="#portfolio" data-i18n="nav.portfolio">PORTFOLIO</a>
+        <a href="#contatti" data-i18n="nav.contact">CONTATTI</a>
       </nav>
-      <div class="lang-switch" role="group" aria-label="Language" data-html-import-id="html-import-9">
-        <button data-lang="it" class="active canva-button" data-html-import-id="html-import-10" data-template-id="button-5" style="color: rgb(36, 26, 20);">IT</button>
-        <button data-lang="fr" data-html-import-id="html-import-11" data-template-id="button-6" class="canva-button" style="color: rgb(90, 74, 60);">FR</button>
-        <button data-lang="en" data-html-import-id="html-import-12" data-template-id="button-7" class="canva-button" style="color: rgb(90, 74, 60);">EN</button>
-        <button data-lang="ar" data-html-import-id="html-import-13" data-template-id="button-8" class="canva-button" style="color: rgb(90, 74, 60);">AR</button>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button data-lang="it" class="active">IT</button>
+        <button data-lang="fr">FR</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ar">AR</button>
       </div>
     </div>
   </div>
@@ -220,7 +290,7 @@
     <div class="wrap hero-grid">
       <div>
         <div class="eyebrow" data-i18n="hero.eyebrow">Artigiano Tadelakt</div>
-        <h1><span>Abdelkarim </span><em>Qaceme</em></h1>
+        <h1><span>Aziz </span><em>En-naciri</em></h1>
         <div class="role" data-i18n="hero.role">Artigiano Tadelakt — 8 anni d'esperienza</div>
         <p class="lead" data-i18n="hero.lead">Specialista nella lavorazione della calce su superfici curve e bagni. Certificato dal coach Abdelfettah Soukdal, affianca i corsi di tadelakt per turisti internazionali.</p>
         <div class="hero-ctas">
@@ -314,7 +384,7 @@
           </div>
           <figcaption data-i18n="cap.3">Dettaglio finitura</figcaption>
         </figure>
-        
+
         <figure class="reel-item">
           <span class="ph-tag-corner" data-i18n="media.photo">FOTO</span>
           <div class="ph-media" data-media-key="elt2" data-media-type="photo" data-media-src="src/tdm20.jpeg" data-caption-key="cap.1">
@@ -360,8 +430,6 @@
           <figcaption data-i18n="cap.5">Piccolo gruppo — corso pratico</figcaption>
         </figure>
 
-
-
         <figure class="reel-item">
           <span class="ph-tag-corner" data-i18n="media.video">FOTO</span>
           <div class="ph-media" data-media-key="elt5" data-media-type="photo" data-media-src="src/tdm25.jpeg" data-caption-key="cap.4">
@@ -388,7 +456,7 @@
           </div>
           <figcaption data-i18n="cap.6">Prima / Dopo</figcaption>
         </figure>
-        
+
     <figure class="reel-item">
           <span class="ph-tag-corner" data-i18n="media.video">FOTO</span>
           <div class="ph-media" data-media-key="elt5" data-media-type="photo" data-media-src="src/tdm13.jpeg" data-caption-key="cap.4">
@@ -415,7 +483,7 @@
           </div>
           <figcaption data-i18n="cap.6">Prima / Dopo</figcaption>
         </figure>
-        
+
       </div>
     </div>
   </section>
@@ -453,7 +521,7 @@
 </div>
 
 <script>
-/* ============ i18n (unchanged) ============ */
+/* ============ i18n ============ */
 const translations = {
   it: {
     "nav.portfolio":"Portfolio","nav.contact":"Contatti",
@@ -597,19 +665,18 @@ document.querySelectorAll('.lang-switch button').forEach(btn=>{
   btn.addEventListener('click', ()=> applyLang(btn.getAttribute('data-lang')));
 });
 
-/* ============ Lightbox: click a media placeholder -> popup with the Canva-hosted asset ============ */
+/* ============ Lightbox: click a media placeholder -> popup with the real asset ============ */
 const lightboxOverlay = document.getElementById('lightboxOverlay');
 const lightboxContent = document.getElementById('lightboxContent');
 const lightboxStage   = document.getElementById('lightboxStage');
 const lightboxClose   = document.getElementById('lightboxClose');
 
 function openLightbox(el){
-  const src  = el.getAttribute('data-media-src');   // e.g. https://canva.link/elt1
+  const src  = el.getAttribute('data-media-src');
   const type = el.getAttribute('data-media-type');  // "photo" | "video"
   const orientation = el.getAttribute('data-media-orientation') || 'landscape';
   const capKey = el.getAttribute('data-caption-key');
 
-  // reset stage
   lightboxStage.innerHTML = '';
   lightboxStage.classList.toggle('is-portrait', orientation === 'portrait');
   lightboxContent.querySelectorAll('.lightbox-caption').forEach(n => n.remove());
@@ -619,7 +686,7 @@ function openLightbox(el){
     mediaEl = document.createElement('video');
     mediaEl.src = src;
     mediaEl.controls = true;
-    mediaEl.autoplay = true;   // starts playing as soon as the popup opens
+    mediaEl.autoplay = true;
     mediaEl.playsInline = true;
   } else {
     mediaEl = document.createElement('img');
@@ -656,10 +723,7 @@ document.querySelectorAll('[data-media-key]').forEach(el=>{
   });
 });
 
-/* ============ Thumbnails: try to load the real Canva media into each grid box.
-   If the URL resolves, the dashed placeholder is replaced with the actual
-   photo/video preview. If it fails (link not set yet / not reachable), the
-   placeholder stays as-is. Clicking still opens the full popup either way. ============ */
+/* ============ Thumbnails: try to load the real media into each grid box. ============ */
 function loadThumbnail(el){
   const src  = el.getAttribute('data-media-src');
   const type = el.getAttribute('data-media-type');
