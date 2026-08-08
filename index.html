@@ -270,6 +270,7 @@
   .two-col.reverse:has(.visual-col){ grid-template-columns: 0.92fr 1.2fr; }
   .two-col.reverse{ grid-template-columns: 1fr 1fr; }
   .two-col.reverse .visual-col{ order:2; }
+  .visual-col .arch-frame{ aspect-ratio:200/290; }
 
   h2.h-lg{ font-size:clamp(32px, 4.2vw, 46px); margin-bottom:22px; max-width:16ch; }
   p.body-lg{ font-size:17.5px; color:var(--ink-soft); max-width:56ch; margin-bottom:0;}
@@ -469,7 +470,34 @@
   }
   .class-card h4{ font-size:22px; margin-bottom:10px; }
   .class-card p{ font-size:14.5px; margin-bottom:20px; }
+  .class-card .price-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--saffron);
+    margin:-8px 0 16px;
+    display:block;
+  }
+  .tad-price-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.03em;
+    color:var(--clay);
+    margin-top:14px;
+    display:block;
+  }
   .class-card a{ font-size:13px; text-decoration:underline; text-underline-offset:4px; color:var(--paper); }
+  .class-card a.js-deposit{
+    text-decoration:none;
+    display:inline-block;
+    padding:8px 14px;
+    background:var(--clay);
+    color:var(--paper);
+    border-radius:var(--radius);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.03em;
+  }
+  .class-card a.js-deposit:hover{ background:var(--clay-deep); }
 
   .shop-band{
     display:grid;
@@ -485,6 +513,20 @@
     font-size:13px;
     color:var(--clay);
   }
+  .shop-item .shop-buy{
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 16px;
+    background:var(--clay);
+    color:var(--paper);
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    border-radius:var(--radius);
+  }
+  .shop-item .shop-buy:hover{ background:var(--clay-deep); }
 
   .quote-row{
     display:grid;
@@ -622,14 +664,32 @@
     .quote-row{ grid-template-columns:1fr; gap:26px; }
     .contact-grid{ grid-template-columns:1fr; gap:40px; }
     .footer-top{ flex-direction:column; }
+    .catalog-grid{ grid-template-columns:repeat(2, 1fr); }
   }
   @media (max-width:560px){
+    .wrap{ padding:0 18px; }
+    body{ font-size:16px; }
     .card-grid{ grid-template-columns:1fr; }
     .artisan-row{ grid-template-columns:1fr; }
     .gallery{ grid-template-columns:1fr; }
     .shop-band{ grid-template-columns:1fr; }
-    section{ padding:70px 0; }
-    .hero{ padding-top:70px; }
+    .catalog-grid{ grid-template-columns:1fr; gap:14px; }
+    section{ padding:56px 0; }
+    .hero{ padding-top:56px; }
+    .emblem-band{ padding:40px 0 34px; }
+    .emblem-badge{ width:98px; margin-bottom:18px; }
+    .nav .brand{ font-size:17px; }
+    .hero-ctas .btn, .hero-ctas a{ flex:1 1 auto; text-align:center; justify-content:center; }
+    .footer-cols{ gap:34px; }
+    .class-card{ padding:22px; }
+    .class-card .price-note{ margin-top:2px; margin-bottom:14px; }
+    table, .field select{ font-size:16px; } /* avoid iOS zoom-on-focus */
+    .field input, .field textarea{ font-size:16px; } /* avoid iOS zoom-on-focus */
+  }
+  @media (max-width:380px){
+    .hero h1{ font-size:44px; }
+    .btn{ padding:12px 20px; font-size:12px; }
+    .emblem-band .motto{ font-size:15px; }
   }
 </style>
 </head>
@@ -718,7 +778,7 @@
       </div>
       <div class="hero-visual" data-reveal>
         <div class="arch-frame">
-          <img src="src/child-tadelakt.jpeg" alt="Bagno in tadelakt" style="width:100%; height:100%; object-fit:cover;">
+          <video src="src/hero-intro.mp4" autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;"></video>
         </div>
       </div>
     </div>
@@ -750,8 +810,10 @@
         <div class="eyebrow" data-i18n="tad.eyebrow">Il Tadelakt</div>
         <h2 class="h-lg" data-i18n="tad.title">La Calce che Respira</h2>
         <p class="body-lg" data-i18n="tad.body">Tecnica millenaria nata negli hammam di Marrakech, il tadelakt trasforma bagni, docce, cucine e pareti in superfici lucide, calde e naturalmente impermeabili. I nostri artigiani, formati secondo il metodo tradizionale, lavorano in tutta Italia per hotel, architetti e privati.</p>
-        <div style="margin-top:30px;">
+        <div style="margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
           <a href="#contatti" class="btn js-book" data-subject="tadelakt" data-i18n="tad.cta">Richiedi un Preventivo</a>
+          <a href="https://buy.stripe.com/REPLACE_WITH_TADELAKT_LINK" class="btn btn-solid" target="_blank" rel="noopener" data-i18n="cta.deposit">Paga un Acconto</a>
+          <span class="tad-price-note" data-i18n="tad.price" style="width:100%; margin-top:4px;">Preventivo personalizzato in base al cantiere · Acconto di prenotazione €150 (a saldo del preventivo finale)</span>
         </div>
       </div>
     </div>
@@ -856,6 +918,7 @@
           <p class="body-lg" data-i18n="art.body">Selezioniamo artigiani marocchini con anni di esperienza diretta a Marrakech, li accompagniamo in Italia e ne curiamo la formazione continua, per garantire un tadelakt fedele alla tradizione, cantiere dopo cantiere.</p>
         </div>
       </div>
+
       <div class="artisan-row">
         <div class="artisan-card" data-reveal>
           <div class="arch-frame"><img src="src/soukdal.jpeg" alt="Abdelfettah Soukdal" style="width:100%; height:100%; object-fit:cover;"></div>
@@ -870,13 +933,13 @@
           <p data-i18n="art.desc2">Coordina i cantieri e i team di artigiani tadelakt in tutta Italia.</p>
         </div>
         <div class="artisan-card" data-reveal>
-          <div class="arch-frame"><img src="src/abdel-td.jpeg" alt="Abdelkarim Qaceme" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="arch-frame"><img src="src/qaceme.jpeg" alt="Abdelkarim Qaceme" style="width:100%; height:100%; object-fit:cover;"></div>
           <span class="role" data-i18n="art.role3">Artigiano Tadelakt - 8 anni d'esperienza</span>
           <h4>Abdelkarim Qaceme</h4>
           <p data-i18n="art.desc3">Specialista nella lavorazione della calce su superfici curve e bagni.</p>
         </div>
         <div class="artisan-card" data-reveal>
-          <div class="arch-frame"><img src="src/aziz-td.png" alt="Aziz En-naciri" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="arch-frame"><img src="src/ennaciri.jpeg" alt="Aziz En-naciri" style="width:100%; height:100%; object-fit:cover;"></div>
           <span class="role" data-i18n="art.role4">Artigiano Tadelakt - 9 anni d'esperienza</span>
           <h4>Aziz En-naciri</h4>
           <p data-i18n="art.desc4">Formato a Marrakech, applica il tadelakt su cantieri residenziali e contract.</p>
@@ -890,7 +953,7 @@
     <div class="wrap two-col reverse">
       <div class="visual-col" data-reveal>
         <div class="arch-frame">
-          <img src="https://export-download.canva.com/zaVwI/DAHQZAzaVwI/-1/0/0001-6224485288737621349.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T020259Z&X-Amz-Expires=44143&X-Amz-Signature=8085f573657254025e365f529d2f3056136438b64d30aef396e677decb639051&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A18%3A42%20GMT" alt="Tavola marocchina" style="width:100%; height:100%; object-fit:cover;">
+          <video src="src/cucina-intro.mp4" autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;"></video>
         </div>
       </div>
       <div data-reveal>
@@ -906,25 +969,41 @@
           <span class="tag" data-i18n="cook.c1.tag">Corso Base</span>
           <h4 data-i18n="cook.c1.t">Tajine &amp; Couscous</h4>
           <p data-i18n="cook.c1.d">Le basi della cucina marocchina quotidiana, dalla spezia al piatto finito.</p>
-          <a href="#contatti" class="js-book" data-subject="cook1" data-i18n="cook.book">Prenota →</a>
+          <span class="price-note" data-i18n="cook.c1.price">€90 a persona · Acconto €40</span>
+          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+            <a href="#contatti" class="js-book" data-subject="cook1" data-i18n="cook.book">Prenota →</a>
+            <a href="https://buy.stripe.com/REPLACE_WITH_COOK1_LINK" class="js-deposit" target="_blank" rel="noopener" data-i18n="cta.deposit">Paga un Acconto</a>
+          </div>
         </div>
         <div class="class-card" data-reveal>
           <span class="tag" data-i18n="cook.c2.tag">Pasticceria</span>
           <h4 data-i18n="cook.c2.t">Pastilla &amp; Dolci</h4>
           <p data-i18n="cook.c2.d">Sfoglie sottili, mandorle e miele: i segreti della pasticceria marocchina.</p>
-          <a href="#contatti" class="js-book" data-subject="cook2" data-i18n="cook.book">Prenota →</a>
+          <span class="price-note" data-i18n="cook.c2.price">€100 a persona · Acconto €45</span>
+          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+            <a href="#contatti" class="js-book" data-subject="cook2" data-i18n="cook.book">Prenota →</a>
+            <a href="https://buy.stripe.com/REPLACE_WITH_COOK2_LINK" class="js-deposit" target="_blank" rel="noopener" data-i18n="cta.deposit">Paga un Acconto</a>
+          </div>
         </div>
         <div class="class-card" data-reveal>
           <span class="tag" data-i18n="cook.c3.tag">Rituale</span>
           <h4 data-i18n="cook.c3.t">Tè alla Menta</h4>
           <p data-i18n="cook.c3.d">L'arte di versare il tè, tra gesto, ospitalità e convivialità.</p>
-          <a href="#contatti" class="js-book" data-subject="cook3" data-i18n="cook.book">Prenota →</a>
+          <span class="price-note" data-i18n="cook.c3.price">€60 a persona · Acconto €25</span>
+          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+            <a href="#contatti" class="js-book" data-subject="cook3" data-i18n="cook.book">Prenota →</a>
+            <a href="https://buy.stripe.com/REPLACE_WITH_COOK3_LINK" class="js-deposit" target="_blank" rel="noopener" data-i18n="cta.deposit">Paga un Acconto</a>
+          </div>
         </div>
         <div class="class-card" data-reveal>
           <span class="tag" data-i18n="cook.c4.tag">Su Misura</span>
           <h4 data-i18n="cook.c4.t">Corso Privato</h4>
           <p data-i18n="cook.c4.d">Per gruppi, aziende o eventi: un'esperienza marocchina su richiesta.</p>
-          <a href="#contatti" class="js-book" data-subject="cook4" data-i18n="cook.book">Prenota →</a>
+          <span class="price-note" data-i18n="cook.c4.price">Prezzo su richiesta · Acconto €100</span>
+          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+            <a href="#contatti" class="js-book" data-subject="cook4" data-i18n="cook.book">Prenota →</a>
+            <a href="https://buy.stripe.com/REPLACE_WITH_COOK4_LINK" class="js-deposit" target="_blank" rel="noopener" data-i18n="cta.deposit">Paga un Acconto</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1014,21 +1093,25 @@
           <img src="https://export-download.canva.com/9eJPQ/DAHQZK9eJPQ/-1/0/0001-1371856691606546427.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T061644Z&X-Amz-Expires=28579&X-Amz-Signature=bd9c0afedf27a02d7a84cb3d294a845d18d54c4d4f8d08b7ac211379d8356df8&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A13%3A03%20GMT" alt="Calce di Marrakech" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
           <h4 data-i18n="shop.i1">Calce di Marrakech, 20kg</h4>
           <span class="price">€85,00</span>
+          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP1_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
         </div>
         <div class="shop-item" data-reveal>
           <img src="https://export-download.canva.com/5NvXI/DAHQZA5NvXI/-1/0/0001-8331044015105381209.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T073428Z&X-Amz-Expires=24126&X-Amz-Signature=66c685bd779e58a70d88f5495f6113c0f0d4dd29256d4819a408fd5cf3764e31&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A16%3A34%20GMT" alt="Frattazzo in cedro" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
           <h4 data-i18n="shop.i2">Frattazzo in Legno di Cedro</h4>
           <span class="price">€5,00 – €20,00</span>
+          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP2_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
         </div>
         <div class="shop-item" data-reveal>
           <img src="https://export-download.canva.com/2Y_-s/DAHQZP2Y_-s/-1/0/0001-7832270355895455375.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T202519Z&X-Amz-Expires=63225&X-Amz-Signature=0ec41e38a22dfb797d608c6d955c9c2946ec8e271e61744d24aa0e10665acf22&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A59%3A04%20GMT" alt="Sapone nero" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
           <h4 data-i18n="shop.i3">Sapone Nero Marocchino</h4>
           <span class="price">€6,00 – €49,00</span>
+          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP3_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
         </div>
         <div class="shop-item" data-reveal>
           <img src="https://export-download.canva.com/KhAb8/DAHQZAKhAb8/-1/0/0001-5283232967997556112.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T215507Z&X-Amz-Expires=57430&X-Amz-Signature=c48fe2690722cb5b120f1b5953586f87850a404daf7efd0c0c0b22838ac99939&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A52%3A17%20GMT" alt="Spezie e tè" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
           <h4 data-i18n="shop.i4">Set Spezie &amp; Tè alla Menta</h4>
           <span class="price">€18,00</span>
+          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP4_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
         </div>
       </div>
       <div style="margin-top:44px;">
@@ -1167,6 +1250,8 @@ const translations = {
     "tad.eyebrow":"Il Tadelakt","tad.title":"La Calce che Respira",
     "tad.body":"Tecnica millenaria nata negli hammam di Marrakech, il tadelakt trasforma bagni, docce, cucine e pareti in superfici lucide, calde e naturalmente impermeabili. I nostri artigiani, formati secondo il metodo tradizionale, lavorano in tutta Italia per hotel, architetti e privati.",
     "tad.cta":"Richiedi un Preventivo",
+    "cta.deposit":"Paga un Acconto",
+    "tad.price":"Preventivo personalizzato in base al cantiere · Acconto di prenotazione €150 (a saldo del preventivo finale)",
     "tad.s1.t":"Bagni & Hammam Privati","tad.s1.d":"Superfici lucide, resistenti all'umidità, su misura per il tuo bagno.",
     "tad.s2.t":"Cucine & Superfici ad Acqua","tad.s2.d":"Piani e rivestimenti a contatto con acqua, naturali e senza fughe.",
     "tad.s3.t":"Pareti & Nicchie Decorative","tad.s3.d":"Superfici materiche per interni residenziali e contract.",
@@ -1191,13 +1276,18 @@ const translations = {
     "cook.eyebrow":"Corsi di Cucina","cook.title":"A Tavola con Marrakech",
     "cook.body":"Piccoli gruppi, ingredienti autentici, gesti tramandati: impara a preparare tajine, couscous, pastilla e il rituale del tè alla menta, guidato da chi la cucina marocchina la vive ogni giorno.",
     "cook.c1.tag":"Corso Base","cook.c1.t":"Tajine & Couscous","cook.c1.d":"Le basi della cucina marocchina quotidiana, dalla spezia al piatto finito.",
+    "cook.c1.price":"€90 a persona · Acconto €40",
     "cook.c2.tag":"Pasticceria","cook.c2.t":"Pastilla & Dolci","cook.c2.d":"Sfoglie sottili, mandorle e miele: i segreti della pasticceria marocchina.",
+    "cook.c2.price":"€100 a persona · Acconto €45",
     "cook.c3.tag":"Rituale","cook.c3.t":"Tè alla Menta","cook.c3.d":"L'arte di versare il tè, tra gesto, ospitalità e convivialità.",
+    "cook.c3.price":"€60 a persona · Acconto €25",
     "cook.c4.tag":"Su Misura","cook.c4.t":"Corso Privato","cook.c4.d":"Per gruppi, aziende o eventi: un'esperienza marocchina su richiesta.",
+    "cook.c4.price":"Prezzo su richiesta · Acconto €100",
     "cook.book":"Prenota il corso di cucina →",
     "shop.eyebrow":"La Bottega","shop.title":"Materiali dal Marocco",
     "shop.body":"Calce di Marrakech, frattazzi in legno di cedro, sapone nero, spezie e tè alla menta: tutto ciò che serve per portare il Marocco a casa tua, selezionato e importato direttamente.",
     "shop.i1":"Calce di Marrakech, 20kg","shop.i2":"Frattazzo in Legno di Cedro","shop.i3":"Sapone Nero Marocchino","shop.i4":"Set Spezie & Tè alla Menta",
+    "shop.buy":"Acquista",
     "shop.cta":"Vai alla Bottega",
     "test.eyebrow":"Testimonianze","test.title":"Chi Ha Vissuto Riad Atelier",
     "test.q1":"\"Un lavoro impeccabile, il bagno sembra uscito da un riad di Marrakech.\"","test.a1":"Cliente privato - Milano",
@@ -1231,6 +1321,8 @@ const translations = {
     "tad.eyebrow":"Tadelakt","tad.title":"The Lime That Breathes",
     "tad.body":"A centuries-old technique born in the hammams of Marrakech, tadelakt transforms bathrooms, showers, kitchens and walls into surfaces that are polished, warm and naturally water-resistant. Our craftsmen, trained in the traditional method, work throughout Italy for hotels, architects and private clients.",
     "tad.cta":"Request a Quote",
+    "cta.deposit":"Pay a Deposit",
+    "tad.price":"Custom quote based on the project · Booking deposit €150 (deducted from the final quote)",
     "tad.s1.t":"Private Bathrooms & Hammams","tad.s1.d":"Polished, moisture-resistant surfaces, tailored to your bathroom.",
     "tad.s2.t":"Kitchens & Water-Facing Surfaces","tad.s2.d":"Natural, seamless surfaces in contact with water.",
     "tad.s3.t":"Decorative Walls & Niches","tad.s3.d":"Textured surfaces for residential and contract interiors.",
@@ -1255,13 +1347,18 @@ const translations = {
     "cook.eyebrow":"Cooking Classes","cook.title":"At the Table with Marrakech",
     "cook.body":"Small groups, authentic ingredients, time-honoured gestures: learn to prepare tajine, couscous, pastilla and the mint tea ritual, guided by those who live Moroccan cooking every day.",
     "cook.c1.tag":"Beginner","cook.c1.t":"Tajine & Couscous","cook.c1.d":"The fundamentals of everyday Moroccan cooking, from spice to plate.",
+    "cook.c1.price":"€90 per person · €40 deposit",
     "cook.c2.tag":"Pastry","cook.c2.t":"Pastilla & Sweets","cook.c2.d":"Thin pastry, almonds and honey: the secrets of Moroccan pastry.",
+    "cook.c2.price":"€100 per person · €45 deposit",
     "cook.c3.tag":"Ritual","cook.c3.t":"Mint Tea Ritual","cook.c3.d":"The art of pouring tea, between gesture, hospitality and conviviality.",
+    "cook.c3.price":"€60 per person · €25 deposit",
     "cook.c4.tag":"Custom","cook.c4.t":"Private Class","cook.c4.d":"For groups, companies or events: a Moroccan experience on request.",
+    "cook.c4.price":"Price on request · €100 deposit",
     "cook.book":"Book the cooking class →",
     "shop.eyebrow":"The Shop","shop.title":"Materials from Morocco",
     "shop.body":"Marrakech lime, cedar wood trowels, black soap, spices and mint tea: everything you need to bring Morocco home, selected and imported directly.",
     "shop.i1":"Marrakech Lime, 20kg","shop.i2":"Cedar Wood Trowel","shop.i3":"Moroccan Black Soap","shop.i4":"Spice & Mint Tea Set",
+    "shop.buy":"Buy Now",
     "shop.cta":"Visit the Shop",
     "test.eyebrow":"Testimonials","test.title":"Those Who Experienced Riad Atelier",
     "test.q1":"\"Impeccable work, the bathroom feels like it came straight from a Marrakech riad.\"","test.a1":"Private client - Milan",
@@ -1295,6 +1392,8 @@ const translations = {
     "tad.eyebrow":"Le Tadelakt","tad.title":"La Chaux qui Respire",
     "tad.body":"Technique millénaire née dans les hammams de Marrakech, le tadelakt transforme salles de bains, douches, cuisines et murs en surfaces polies, chaleureuses et naturellement imperméables. Nos artisans, formés selon la méthode traditionnelle, travaillent dans toute l'Italie pour des hôtels, architectes et particuliers.",
     "tad.cta":"Demander un Devis",
+    "cta.deposit":"Payer un Acompte",
+    "tad.price":"Devis personnalisé selon le chantier · Acompte de réservation 150€ (déduit du devis final)",
     "tad.s1.t":"Salles de Bains & Hammams Privés","tad.s1.d":"Surfaces polies, résistantes à l'humidité, sur mesure pour votre salle de bain.",
     "tad.s2.t":"Cuisines & Surfaces en Contact avec l'Eau","tad.s2.d":"Plans et revêtements naturels, sans joints, au contact de l'eau.",
     "tad.s3.t":"Murs & Niches Décoratives","tad.s3.d":"Surfaces texturées pour intérieurs résidentiels et contract.",
@@ -1326,13 +1425,18 @@ const translations = {
     "cook.eyebrow":"Cours de Cuisine","cook.title":"À Table avec Marrakech",
     "cook.body":"Petits groupes, ingrédients authentiques, gestes transmis : apprenez à préparer tajine, couscous, pastilla et le rituel du thé à la menthe, guidé par ceux qui vivent la cuisine marocaine au quotidien.",
     "cook.c1.tag":"Cours de Base","cook.c1.t":"Tajine & Couscous","cook.c1.d":"Les bases de la cuisine marocaine du quotidien, de l'épice à l'assiette.",
+    "cook.c1.price":"90€ par personne · Acompte 40€",
     "cook.c2.tag":"Pâtisserie","cook.c2.t":"Pastilla & Douceurs","cook.c2.d":"Pâtes fines, amandes et miel : les secrets de la pâtisserie marocaine.",
+    "cook.c2.price":"100€ par personne · Acompte 45€",
     "cook.c3.tag":"Rituel","cook.c3.t":"Thé à la Menthe","cook.c3.d":"L'art de verser le thé, entre geste, hospitalité et convivialité.",
+    "cook.c3.price":"60€ par personne · Acompte 25€",
     "cook.c4.tag":"Sur Mesure","cook.c4.t":"Cours Privé","cook.c4.d":"Pour groupes, entreprises ou événements : une expérience marocaine sur demande.",
+    "cook.c4.price":"Prix sur demande · Acompte 100€",
     "cook.book":"Réserver le cours de cuisine →",
     "shop.eyebrow":"La Boutique","shop.title":"Matériaux du Maroc",
     "shop.body":"Chaux de Marrakech, taloches en bois de cèdre, savon noir, épices et thé à la menthe : tout ce qu'il faut pour ramener le Maroc chez vous, sélectionné et importé directement.",
     "shop.i1":"Chaux de Marrakech, 20kg","shop.i2":"Taloche en Bois de Cèdre","shop.i3":"Savon Noir Marocain","shop.i4":"Set Épices & Thé à la Menthe",
+    "shop.buy":"Acheter",
     "shop.cta":"Aller à la Boutique",
     "test.eyebrow":"Témoignages","test.title":"Ceux Qui Ont Vécu Riad Atelier",
     "test.q1":"\"Un travail impeccable, la salle de bain semble tout droit sortie d'un riad de Marrakech.\"","test.a1":"Client privé - Milan",
