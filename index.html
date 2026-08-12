@@ -505,13 +505,16 @@
     gap:24px;
     margin-top:56px;
   }
+  .shop-item{ text-decoration:none; color:inherit; display:block; }
   .shop-item .placeholder{ aspect-ratio:1/1; }
-  .shop-item img{ box-shadow: 0 16px 32px rgba(36,26,20,0.25); }
+  .shop-item img{ box-shadow: 0 16px 32px rgba(36,26,20,0.25); transition:transform .3s ease; }
+  .shop-item:hover img{ transform:scale(1.02); }
   .shop-item h4{ font-size:15.5px; margin:14px 0 4px; }
   .shop-item .price{
     font-family:'IBM Plex Mono', monospace;
     font-size:13px;
     color:var(--clay);
+    display:block;
   }
   .shop-item .shop-buy{
     display:inline-block;
@@ -526,7 +529,7 @@
     text-transform:uppercase;
     border-radius:var(--radius);
   }
-  .shop-item .shop-buy:hover{ background:var(--clay-deep); }
+  .shop-item:hover .shop-buy{ background:var(--clay-deep); }
 
   .quote-row{
     display:grid;
@@ -1085,30 +1088,42 @@
       </div>
 
       <div class="shop-band">
-        <div class="shop-item" data-reveal>
-          <img src="https://export-download.canva.com/9eJPQ/DAHQZK9eJPQ/-1/0/0001-1371856691606546427.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T061644Z&X-Amz-Expires=28579&X-Amz-Signature=bd9c0afedf27a02d7a84cb3d294a845d18d54c4d4f8d08b7ac211379d8356df8&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A13%3A03%20GMT" alt="Calce di Marrakech" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-          <h4 data-i18n="shop.i1">Calce di Marrakech, 20kg</h4>
-          <span class="price">€85,00</span>
-          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP1_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
-        </div>
-        <div class="shop-item" data-reveal>
-          <img src="https://export-download.canva.com/5NvXI/DAHQZA5NvXI/-1/0/0001-8331044015105381209.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260725T073428Z&X-Amz-Expires=24126&X-Amz-Signature=66c685bd779e58a70d88f5495f6113c0f0d4dd29256d4819a408fd5cf3764e31&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2014%3A16%3A34%20GMT" alt="Frattazzo in cedro" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-          <h4 data-i18n="shop.i2">Frattazzo in Legno di Cedro</h4>
-          <span class="price">€10,00 – €20,00</span>
-          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP2_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
-        </div>
-        <div class="shop-item" data-reveal>
-          <img src="https://export-download.canva.com/2Y_-s/DAHQZP2Y_-s/-1/0/0001-7832270355895455375.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T202519Z&X-Amz-Expires=63225&X-Amz-Signature=0ec41e38a22dfb797d608c6d955c9c2946ec8e271e61744d24aa0e10665acf22&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A59%3A04%20GMT" alt="Sapone nero" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-          <h4 data-i18n="shop.i3">Sapone Nero Marocchino</h4>
-          <span class="price">€6,00 – €49,00</span>
-          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP3_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
-        </div>
-        <div class="shop-item" data-reveal>
-          <img src="https://export-download.canva.com/KhAb8/DAHQZAKhAb8/-1/0/0001-5283232967997556112.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260724%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260724T215507Z&X-Amz-Expires=57430&X-Amz-Signature=c48fe2690722cb5b120f1b5953586f87850a404daf7efd0c0c0b22838ac99939&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Sat%2C%2025%20Jul%202026%2013%3A52%3A17%20GMT" alt="Spezie e tè" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-          <h4 data-i18n="shop.i4">Set Spezie &amp; Tè alla Menta</h4>
-          <span class="price">€18,00</span>
-          <a href="https://buy.stripe.com/REPLACE_WITH_SHOP4_LINK" class="shop-buy" target="_blank" rel="noopener" data-i18n="shop.buy">Acquista</a>
-        </div>
+        <a class="shop-item" data-reveal href="shop-calce.html">
+          <img src="src/calce-20kg.jpeg" alt="Calce di Marrakech" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.cat1">Calce di Marrakech</h4>
+          <span class="price" data-i18n="shop.cat1d">Materia prima originale</span>
+          <span class="shop-buy" data-i18n="shop.viewCat">Vedi Prodotti →</span>
+        </a>
+        <a class="shop-item" data-reveal href="shop-strumenti.html">
+          <img src="src/frattazzo-cedro.jpeg" alt="Strumenti" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.cat2">Strumenti</h4>
+          <span class="price" data-i18n="shop.cat2d">Frattazzo, pietra, frattone</span>
+          <span class="shop-buy" data-i18n="shop.viewCat">Vedi Prodotti →</span>
+        </a>
+        <a class="shop-item" data-reveal href="shop-protettivi.html">
+          <img src="src/sapone-nero.jpeg" alt="Protettivi e Cere" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.cat3">Protettivi &amp; Cere</h4>
+          <span class="price" data-i18n="shop.cat3d">Sapone nero, cere naturali</span>
+          <span class="shop-buy" data-i18n="shop.viewCat">Vedi Prodotti →</span>
+        </a>
+        <a class="shop-item" data-reveal href="shop-colori.html">
+          <img src="src/colore-terra.jpeg" alt="Colori" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.cat4">Colori &amp; Pigmenti</h4>
+          <span class="price" data-i18n="shop.cat4d">Terre naturali, pigmenti</span>
+          <span class="shop-buy" data-i18n="shop.viewCat">Vedi Prodotti →</span>
+        </a>
+        <a class="shop-item" data-reveal href="shop-kit.html">
+          <img src="src/kit-starter.jpeg" alt="Starter Kit" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.cat5">Starter Kit</h4>
+          <span class="price" data-i18n="shop.cat5d">Tutto il necessario in un kit</span>
+          <span class="shop-buy" data-i18n="shop.viewCat">Vedi Prodotti →</span>
+        </a>
+        <a class="shop-item" data-reveal href="shop-arredamento.html">
+          <img src="src/vaso-tadelakt.jpeg" alt="Arredamento" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
+          <h4 data-i18n="shop.cat6">Arredamento</h4>
+          <span class="price" data-i18n="shop.cat6d">Oggetti di design fatti a mano</span>
+          <span class="shop-buy" data-i18n="shop.viewCat">Vedi Prodotti →</span>
+        </a>
       </div>
       <div style="margin-top:44px;">
         <a href="#contatti" class="btn btn-solid" data-i18n="shop.cta">Vai alla Bottega</a>
@@ -1282,8 +1297,13 @@ const translations = {
     "cook.book":"Prenota il corso di cucina →",
     "shop.eyebrow":"La Bottega","shop.title":"Materiali dal Marocco",
     "shop.body":"Calce di Marrakech, frattazzi in legno di cedro, sapone nero, spezie e tè alla menta: tutto ciò che serve per portare il Marocco a casa tua, selezionato e importato direttamente.",
-    "shop.i1":"Calce di Marrakech, 20kg","shop.i2":"Frattazzo in Legno di Cedro","shop.i3":"Sapone Nero Marocchino","shop.i4":"Set Spezie & Tè alla Menta",
-    "shop.buy":"Acquista",
+    "shop.cat1":"Calce di Marrakech","shop.cat1d":"Materia prima originale",
+    "shop.cat2":"Strumenti","shop.cat2d":"Frattazzo, pietra, frattone",
+    "shop.cat3":"Protettivi & Cere","shop.cat3d":"Sapone nero, cere naturali",
+    "shop.cat4":"Colori & Pigmenti","shop.cat4d":"Terre naturali, pigmenti",
+    "shop.cat5":"Starter Kit","shop.cat5d":"Tutto il necessario in un kit",
+    "shop.cat6":"Arredamento","shop.cat6d":"Oggetti di design fatti a mano",
+    "shop.viewCat":"Vedi Prodotti →",
     "shop.cta":"Vai alla Bottega",
     "test.eyebrow":"Testimonianze","test.title":"Chi Ha Vissuto Riad Atelier",
     "test.q1":"\"Un lavoro impeccabile, il bagno sembra uscito da un riad di Marrakech.\"","test.a1":"Cliente privato - Milano",
@@ -1353,8 +1373,13 @@ const translations = {
     "cook.book":"Book the cooking class →",
     "shop.eyebrow":"The Shop","shop.title":"Materials from Morocco",
     "shop.body":"Marrakech lime, cedar wood trowels, black soap, spices and mint tea: everything you need to bring Morocco home, selected and imported directly.",
-    "shop.i1":"Marrakech Lime, 20kg","shop.i2":"Cedar Wood Trowel","shop.i3":"Moroccan Black Soap","shop.i4":"Spice & Mint Tea Set",
-    "shop.buy":"Buy Now",
+    "shop.cat1":"Marrakech Lime","shop.cat1d":"Original raw material",
+    "shop.cat2":"Tools","shop.cat2d":"Trowel, stone, steel float",
+    "shop.cat3":"Protectives & Waxes","shop.cat3d":"Black soap, natural waxes",
+    "shop.cat4":"Colors & Pigments","shop.cat4d":"Natural earths, pigments",
+    "shop.cat5":"Starter Kit","shop.cat5d":"Everything you need in one kit",
+    "shop.cat6":"Decor","shop.cat6d":"Handmade design objects",
+    "shop.viewCat":"View Products →",
     "shop.cta":"Visit the Shop",
     "test.eyebrow":"Testimonials","test.title":"Those Who Experienced Riad Atelier",
     "test.q1":"\"Impeccable work, the bathroom feels like it came straight from a Marrakech riad.\"","test.a1":"Private client - Milan",
@@ -1431,8 +1456,13 @@ const translations = {
     "cook.book":"Réserver le cours de cuisine →",
     "shop.eyebrow":"La Boutique","shop.title":"Matériaux du Maroc",
     "shop.body":"Chaux de Marrakech, taloches en bois de cèdre, savon noir, épices et thé à la menthe : tout ce qu'il faut pour ramener le Maroc chez vous, sélectionné et importé directement.",
-    "shop.i1":"Chaux de Marrakech, 20kg","shop.i2":"Taloche en Bois de Cèdre","shop.i3":"Savon Noir Marocain","shop.i4":"Set Épices & Thé à la Menthe",
-    "shop.buy":"Acheter",
+    "shop.cat1":"Chaux de Marrakech","shop.cat1d":"Matière première originale",
+    "shop.cat2":"Outils","shop.cat2d":"Taloche, pierre, frattone",
+    "shop.cat3":"Protecteurs & Cires","shop.cat3d":"Savon noir, cires naturelles",
+    "shop.cat4":"Couleurs & Pigments","shop.cat4d":"Terres naturelles, pigments",
+    "shop.cat5":"Starter Kit","shop.cat5d":"Tout le nécessaire en un kit",
+    "shop.cat6":"Décoration","shop.cat6d":"Objets design faits main",
+    "shop.viewCat":"Voir les Produits →",
     "shop.cta":"Aller à la Boutique",
     "test.eyebrow":"Témoignages","test.title":"Ceux Qui Ont Vécu Riad Atelier",
     "test.q1":"\"Un travail impeccable, la salle de bain semble tout droit sortie d'un riad de Marrakech.\"","test.a1":"Client privé - Milan",
