@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protettivi e Cere — Riad Atelier Bottega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#241a14; --ink-soft:#5a4a3c;
+  --paper:#f2e9d8; --paper-2:#e7dac0; --paper-3:#dccba5;
+  --clay:#a8532c; --clay-deep:#7e3c1f; --saffron:#c98a2c;
+  --line: rgba(36,26,20,0.14); --ph-line: rgba(36,26,20,0.28);
+  --radius: 2px; --maxw: 1080px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Karla', sans-serif; font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; margin:0; color:var(--ink); letter-spacing:-0.01em; }
+a{color:inherit;}
+.eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--clay); display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.eyebrow::before{ content:""; width:22px; height:1px; background:var(--clay); display:inline-block; }
+
+header{ padding:0; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:100; background:rgba(242,233,216,0.92); backdrop-filter:blur(6px); }
+.nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+.brand{ display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-weight:600; font-size:20px; letter-spacing:0.01em; text-decoration:none; color:var(--ink); }
+.brand-mark{ width:34px; height:34px; flex:none; }
+.nav-links{ display:flex; align-items:center; gap:30px; list-style:none; margin:0; padding:0; }
+.nav-links a{ text-decoration:none; font-size:14.5px; color:var(--ink-soft); position:relative; padding-bottom:3px; }
+.nav-links a:hover{ color:var(--clay); }
+.nav-links a.current{ color:var(--clay); }
+.lang-switch{ display:flex; gap:2px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.04em; }
+.lang-switch button{ background:none; border:1px solid transparent; color:var(--ink-soft); padding:5px 8px; cursor:pointer; text-transform:uppercase; }
+.lang-switch button.active{ color:var(--ink); border-color:var(--ink); }
+.nav-toggle{ display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:6px; }
+.nav-toggle span{ width:22px; height:2px; background:var(--ink); display:block; }
+@media (max-width:980px){ .nav-links{ display:none; } .nav-toggle{ display:flex; } }
+
+.cat-hero{ padding:70px 0 50px; }
+.cat-hero h1{ font-size:clamp(34px, 5vw, 52px); margin:14px 0 18px; }
+.cat-hero p{ font-size:17px; color:var(--ink-soft); max-width:60ch; }
+
+.product-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; padding-bottom:90px; }
+@media (max-width:860px){ .product-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:560px){ .product-grid{ grid-template-columns:1fr; } }
+
+.product-card{ background:var(--paper-2); border:1px solid var(--line); cursor:pointer; overflow:hidden; transition:box-shadow .25s ease; }
+.product-card:hover{ box-shadow:0 14px 30px rgba(36,26,20,0.12); }
+.product-photo{ aspect-ratio:1/1; overflow:hidden; position:relative; }
+.product-photo img{ width:100%; height:100%; object-fit:cover; }
+.ph-media{ width:100%; height:100%; background: repeating-linear-gradient(135deg, rgba(36,26,20,0.05) 0 2px, transparent 2px 14px), linear-gradient(160deg, var(--paper-3), var(--paper-2)); border:1.5px dashed var(--ph-line); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:16px; color:var(--ink-soft); }
+.ph-media .ph-icon{ font-size:20px; opacity:0.5; }
+.ph-media .ph-label{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.04em; text-transform:uppercase; opacity:0.65; max-width:20ch; line-height:1.4; }
+
+.product-body{ padding:20px 22px 22px; }
+.product-body h3{ font-size:17px; margin-bottom:6px; }
+.product-price{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--clay); margin-bottom:10px; display:block; }
+.product-teaser{ font-size:14px; color:var(--ink-soft); margin:0; }
+.product-toggle{ margin-top:14px; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--clay); display:flex; align-items:center; gap:6px; }
+.product-toggle .arrow{ transition:transform .25s ease; display:inline-block; }
+.product-card.open .product-toggle .arrow{ transform:rotate(180deg); }
+
+.product-detail{ max-height:0; overflow:hidden; transition:max-height .35s ease; border-top:1px solid transparent; }
+.product-card.open .product-detail{ max-height:400px; border-top:1px solid var(--line); }
+.product-detail-inner{ padding:18px 22px 22px; }
+.product-detail p{ font-size:14px; color:var(--ink-soft); margin:0 0 14px; }
+.variant-list{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+.variant-list li{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.03em; border:1px solid var(--clay); color:var(--clay); padding:6px 12px; border-radius:20px; }
+
+.cat-nav{ background:var(--ink); padding:18px 0; }
+.cat-nav .wrap{ display:flex; gap:22px; flex-wrap:wrap; }
+.cat-nav a{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; color:rgba(242,233,216,0.65); }
+.cat-nav a.current{ color:var(--saffron); border-bottom:1px solid var(--saffron); padding-bottom:2px; }
+.cat-nav a:hover{ color:var(--paper); }
+
+footer{ padding:26px 0; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 34 34" fill="none">
+        <line x1="17" y1="4" x2="17" y2="30" stroke="#a8532c" stroke-width="1"/>
+        <text x="8" y="25.5" font-family="Fraunces, serif" font-weight="600" font-size="18" fill="#241a14">R</text>
+        <text x="17.5" y="18.5" font-family="Fraunces, serif" font-weight="600" font-size="18" fill="#241a14">A</text>
+      </svg>
+      Riad Atelier
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#tadelakt" data-i18n="nav.tadelakt">Tadelakt</a></li>
+      <li><a href="index.html#artigiani" data-i18n="nav.artisans">Artigiani</a></li>
+      <li><a href="index.html#cucina" data-i18n="nav.cooking">Corsi di Cucina</a></li>
+      <li><a href="index.html#bottega" class="current" data-i18n="nav.shop">Bottega</a></li>
+      <li><a href="index.html#storia" data-i18n="nav.about">Chi Siamo</a></li>
+      <li><a href="index.html#contatti" data-i18n="nav.contact">Contatti</a></li>
+    </ul>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang="it" class="active">IT</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="fr">FR</button>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="cat-nav">
+  <div class="wrap">
+    <a href="shop-calce.html" data-i18n="catnav.calce">Calce di Marrakech</a>
+    <a href="shop-strumenti.html" data-i18n="catnav.strumenti">Strumenti</a>
+    <a href="shop-protettivi.html" class="current" data-i18n="catnav.protettivi">Protettivi &amp; Cere</a>
+    <a href="shop-colori.html" data-i18n="catnav.colori">Colori</a>
+    <a href="shop-kit.html" data-i18n="catnav.kit">Starter Kit</a>
+    <a href="shop-arredamento.html" data-i18n="catnav.arredamento">Arredamento</a>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="cat-hero wrap">
+    <div class="eyebrow">Bottega — <span data-i18n="cat.eyebrow">Finiture Naturali</span></div>
+    <h1 data-i18n="cat.h1">Protettivi e Cere</h1>
+    <p data-i18n="cat.intro">I trattamenti che esaltano la durabilità naturale del Tadelakt: il celebre sapone nero marocchino, le cere vegetali d'api e di carnauba, e i solventi naturali usati per prepararle.</p>
+  </section>
+
+  <section id="prodotti" class="wrap">
+    <div class="product-grid">
+
+      <div class="product-card" data-idx="0">
+        <div class="product-photo">
+          <img src="src/sapone-nero.jpeg" alt="Sapone Nero Marocchino" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'ph-media', innerHTML: '<div class=\'ph-icon\'>&#9670;</div><div class=\'ph-label\'>Foto: Sapone Nero Marocchino</div>'}))">
+        </div>
+        <div class="product-body">
+          <h3 class="p-name">Sapone Nero Marocchino</h3>
+          <span class="product-price p-price">€6,00 – €49,00</span>
+          <p class="product-teaser p-teaser">Protegge e lucida, rendendo la superficie impermeabile e setosa.</p>
+          <div class="product-toggle" data-i18n="misc.toggle">Vedi dettagli e varianti <span class="arrow">&#9660;</span></div>
+        </div>
+        <div class="product-detail">
+          <div class="product-detail-inner">
+            <p class="p-detail">Utilizzato da secoli come trattamento finale del Tadelakt. Applicato con la pietra di fiume, dona alla calce un aspetto lucido e tridimensionale aumentandone l'impermeabilità.</p>
+            <ul class="variant-list"><li>250 ml</li><li>1 L</li><li>5 L</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-idx="1">
+        <div class="product-photo">
+          <img src="src/cera-api.jpeg" alt="Cera d'Api Naturale" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'ph-media', innerHTML: '<div class=\'ph-icon\'>&#9670;</div><div class=\'ph-label\'>Foto: Cera d'Api Naturale</div>'}))">
+        </div>
+        <div class="product-body">
+          <h3 class="p-name">Cera d'Api Naturale</h3>
+          <span class="product-price p-price">€5,50 – €19,50</span>
+          <p class="product-teaser p-teaser">Finitura vegetale per una protezione naturale e duratura.</p>
+          <div class="product-toggle" data-i18n="misc.toggle">Vedi dettagli e varianti <span class="arrow">&#9660;</span></div>
+        </div>
+        <div class="product-detail">
+          <div class="product-detail-inner">
+            <p class="p-detail">Da sciogliere a circa 70° in combinazione con cera di carnauba e un solvente di agrumi, forma una miscela protettiva che aumenta l'idrorepellenza e la resistenza della superficie.</p>
+            <ul class="variant-list"><li>100 g</li><li>250 g</li><li>500 g</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-idx="2">
+        <div class="product-photo">
+          <img src="src/cera-carnauba.jpeg" alt="Cera di Carnauba" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'ph-media', innerHTML: '<div class=\'ph-icon\'>&#9670;</div><div class=\'ph-label\'>Foto: Cera di Carnauba</div>'}))">
+        </div>
+        <div class="product-body">
+          <h3 class="p-name">Cera di Carnauba</h3>
+          <span class="product-price p-price">€8,00 – €22,00</span>
+          <p class="product-teaser p-teaser">Finitura storica, complementare alla cera d'api.</p>
+          <div class="product-toggle" data-i18n="misc.toggle">Vedi dettagli e varianti <span class="arrow">&#9660;</span></div>
+        </div>
+        <div class="product-detail">
+          <div class="product-detail-inner">
+            <p class="p-detail">Cera vegetale utilizzata insieme alla cera d'api per aggiungere un ulteriore strato di protezione naturale, perfettamente compatibile con le superfici in Tadelakt.</p>
+            <ul class="variant-list"><li>100 g</li><li>250 g</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-idx="3">
+        <div class="product-photo">
+          <img src="src/terpene-agrumi.jpeg" alt="Terpene di Agrumi" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'ph-media', innerHTML: '<div class=\'ph-icon\'>&#9670;</div><div class=\'ph-label\'>Foto: Terpene di Agrumi</div>'}))">
+        </div>
+        <div class="product-body">
+          <h3 class="p-name">Terpene di Agrumi</h3>
+          <span class="product-price p-price">€12,00</span>
+          <p class="product-teaser p-teaser">Solvente naturale estratto dalla buccia degli agrumi.</p>
+          <div class="product-toggle" data-i18n="misc.toggle">Vedi dettagli e varianti <span class="arrow">&#9660;</span></div>
+        </div>
+        <div class="product-detail">
+          <div class="product-detail-inner">
+            <p class="p-detail">Utilizzato per sciogliere la cera d'api o di carnauba e creare la miscela protettiva applicata sulla superficie finita del Tadelakt.</p>
+            <ul class="variant-list"><li>500 ml</li><li>1 L</li></ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Riad Atelier — Bottega · <a href="index.html#contatti" style="color:inherit; text-decoration:underline; text-underline-offset:3px;" data-i18n="misc.back">Torna al sito principale</a></div>
+</footer>
+
+<script>
+const translations = {
+  "it": {
+    "nav.tadelakt": "Tadelakt",
+    "nav.artisans": "Artigiani",
+    "nav.cooking": "Corsi di Cucina",
+    "nav.shop": "Bottega",
+    "nav.about": "Chi Siamo",
+    "nav.contact": "Contatti",
+    "catnav.calce": "Calce di Marrakech",
+    "catnav.strumenti": "Strumenti",
+    "catnav.protettivi": "Protettivi & Cere",
+    "catnav.colori": "Colori",
+    "catnav.kit": "Starter Kit",
+    "catnav.arredamento": "Arredamento",
+    "misc.toggle": "Vedi dettagli e varianti",
+    "misc.back": "Torna al sito principale",
+    "cat.eyebrow": "Finiture Naturali",
+    "cat.h1": "Protettivi e Cere",
+    "cat.intro": "I trattamenti che esaltano la durabilità naturale del Tadelakt: il celebre sapone nero marocchino, le cere vegetali d'api e di carnauba, e i solventi naturali usati per prepararle.",
+    "product.0": {
+      "name": "Sapone Nero Marocchino",
+      "price": "€6,00 – €49,00",
+      "teaser": "Protegge e lucida, rendendo la superficie impermeabile e setosa.",
+      "detail": "Utilizzato da secoli come trattamento finale del Tadelakt. Applicato con la pietra di fiume, dona alla calce un aspetto lucido e tridimensionale aumentandone l'impermeabilità.",
+      "variants": [
+        "250 ml",
+        "1 L",
+        "5 L"
+      ]
+    },
+    "product.1": {
+      "name": "Cera d'Api Naturale",
+      "price": "€5,50 – €19,50",
+      "teaser": "Finitura vegetale per una protezione naturale e duratura.",
+      "detail": "Da sciogliere a circa 70° in combinazione con cera di carnauba e un solvente di agrumi, forma una miscela protettiva che aumenta l'idrorepellenza e la resistenza della superficie.",
+      "variants": [
+        "100 g",
+        "250 g",
+        "500 g"
+      ]
+    },
+    "product.2": {
+      "name": "Cera di Carnauba",
+      "price": "€8,00 – €22,00",
+      "teaser": "Finitura storica, complementare alla cera d'api.",
+      "detail": "Cera vegetale utilizzata insieme alla cera d'api per aggiungere un ulteriore strato di protezione naturale, perfettamente compatibile con le superfici in Tadelakt.",
+      "variants": [
+        "100 g",
+        "250 g"
+      ]
+    },
+    "product.3": {
+      "name": "Terpene di Agrumi",
+      "price": "€12,00",
+      "teaser": "Solvente naturale estratto dalla buccia degli agrumi.",
+      "detail": "Utilizzato per sciogliere la cera d'api o di carnauba e creare la miscela protettiva applicata sulla superficie finita del Tadelakt.",
+      "variants": [
+        "500 ml",
+        "1 L"
+      ]
+    }
+  },
+  "en": {
+    "nav.tadelakt": "Tadelakt",
+    "nav.artisans": "Artisans",
+    "nav.cooking": "Cooking Classes",
+    "nav.shop": "Shop",
+    "nav.about": "About",
+    "nav.contact": "Contact",
+    "catnav.calce": "Marrakech Lime",
+    "catnav.strumenti": "Tools",
+    "catnav.protettivi": "Protectives & Waxes",
+    "catnav.colori": "Colors",
+    "catnav.kit": "Starter Kit",
+    "catnav.arredamento": "Decor",
+    "misc.toggle": "View details & options",
+    "misc.back": "Back to main site",
+    "cat.eyebrow": "Natural Finishes",
+    "cat.h1": "Protectives & Waxes",
+    "cat.intro": "The treatments that enhance Tadelakt's natural durability: the famous Moroccan black soap, vegetable beeswax and carnauba wax, and the natural solvents used to prepare them.",
+    "product.0": {
+      "name": "Moroccan Black Soap",
+      "price": "€6.00 – €49.00",
+      "teaser": "Protects and polishes, making the surface waterproof and silky.",
+      "detail": "Used for centuries as the final Tadelakt treatment. Applied with the river stone, it gives the lime a glossy, three-dimensional look and boosts its water resistance.",
+      "variants": [
+        "250 ml",
+        "1 L",
+        "5 L"
+      ]
+    },
+    "product.1": {
+      "name": "Natural Beeswax",
+      "price": "€5.50 – €19.50",
+      "teaser": "A vegetable finish for natural, long-lasting protection.",
+      "detail": "Melt at around 70°C combined with carnauba wax and a citrus solvent to form a protective blend that boosts water resistance and surface durability.",
+      "variants": [
+        "100 g",
+        "250 g",
+        "500 g"
+      ]
+    },
+    "product.2": {
+      "name": "Carnauba Wax",
+      "price": "€8.00 – €22.00",
+      "teaser": "A traditional finish that complements beeswax.",
+      "detail": "A vegetable wax used together with beeswax to add an extra layer of natural protection, fully compatible with Tadelakt surfaces.",
+      "variants": [
+        "100 g",
+        "250 g"
+      ]
+    },
+    "product.3": {
+      "name": "Citrus Terpene",
+      "price": "€12.00",
+      "teaser": "A natural solvent extracted from citrus peel.",
+      "detail": "Used to dissolve beeswax or carnauba wax to create the protective blend applied to the finished Tadelakt surface.",
+      "variants": [
+        "500 ml",
+        "1 L"
+      ]
+    }
+  },
+  "fr": {
+    "nav.tadelakt": "Tadelakt",
+    "nav.artisans": "Artisans",
+    "nav.cooking": "Cours de Cuisine",
+    "nav.shop": "Boutique",
+    "nav.about": "À Propos",
+    "nav.contact": "Contact",
+    "catnav.calce": "Chaux de Marrakech",
+    "catnav.strumenti": "Outils",
+    "catnav.protettivi": "Protecteurs & Cires",
+    "catnav.colori": "Couleurs",
+    "catnav.kit": "Starter Kit",
+    "catnav.arredamento": "Décoration",
+    "misc.toggle": "Voir détails et variantes",
+    "misc.back": "Retour au site principal",
+    "cat.eyebrow": "Finitions Naturelles",
+    "cat.h1": "Protecteurs et Cires",
+    "cat.intro": "Les traitements qui renforcent la durabilité naturelle du Tadelakt : le célèbre savon noir marocain, les cires végétales d'abeille et de carnauba, et les solvants naturels utilisés pour les préparer.",
+    "product.0": {
+      "name": "Savon Noir Marocain",
+      "price": "6,00 € – 49,00 €",
+      "teaser": "Protège et lustre, rendant la surface imperméable et soyeuse.",
+      "detail": "Utilisé depuis des siècles comme traitement final du Tadelakt. Appliqué avec la pierre de rivière, il donne à la chaux un aspect brillant et tridimensionnel tout en renforçant son imperméabilité.",
+      "variants": [
+        "250 ml",
+        "1 L",
+        "5 L"
+      ]
+    },
+    "product.1": {
+      "name": "Cire d'Abeille Naturelle",
+      "price": "5,50 € – 19,50 €",
+      "teaser": "Une finition végétale pour une protection naturelle et durable.",
+      "detail": "À faire fondre à environ 70° avec de la cire de carnauba et un solvant d'agrumes, elle forme un mélange protecteur qui renforce l'hydrofugation et la résistance de la surface.",
+      "variants": [
+        "100 g",
+        "250 g",
+        "500 g"
+      ]
+    },
+    "product.2": {
+      "name": "Cire de Carnauba",
+      "price": "8,00 € – 22,00 €",
+      "teaser": "Une finition historique, complémentaire à la cire d'abeille.",
+      "detail": "Cire végétale utilisée avec la cire d'abeille pour ajouter une couche supplémentaire de protection naturelle, parfaitement compatible avec les surfaces en Tadelakt.",
+      "variants": [
+        "100 g",
+        "250 g"
+      ]
+    },
+    "product.3": {
+      "name": "Terpène d'Agrumes",
+      "price": "12,00 €",
+      "teaser": "Solvant naturel extrait de l'écorce d'agrumes.",
+      "detail": "Utilisé pour dissoudre la cire d'abeille ou de carnauba afin de créer le mélange protecteur appliqué sur la surface finie du Tadelakt.",
+      "variants": [
+        "500 ml",
+        "1 L"
+      ]
+    }
+  }
+};
+
+let currentLang = 'it';
+function applyLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang] && translations[lang][key] !== undefined){
+      el.textContent = translations[lang][key];
+    }
+  });
+  document.querySelectorAll('.product-card').forEach(card => {
+    const idx = card.getAttribute('data-idx');
+    const t = translations[lang]['product.' + idx];
+    if(t){
+      card.querySelector('.p-name').textContent = t.name;
+      card.querySelector('.p-price').textContent = t.price;
+      card.querySelector('.p-teaser').textContent = t.teaser;
+      card.querySelector('.p-detail').textContent = t.detail;
+      const vlist = card.querySelector('.variant-list');
+      if(vlist){
+        vlist.innerHTML = t.variants.map(v => '<li>' + v + '</li>').join('');
+      }
+    }
+  });
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+}
+document.querySelectorAll('.lang-switch button').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+});
+
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const wasOpen = card.classList.contains('open');
+    document.querySelectorAll('.product-card.open').forEach(c => { if(c !== card) c.classList.remove('open'); });
+    card.classList.toggle('open', !wasOpen);
+  });
+});
+const navToggle = document.querySelector('.nav-toggle');
+if(navToggle){
+  navToggle.addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.cssText += 'flex-direction:column; position:absolute; top:100%; left:0; right:0; background:var(--paper); padding:20px 28px; border-bottom:1px solid var(--line);';
+  });
+}
+</script>
+</body>
+</html>
